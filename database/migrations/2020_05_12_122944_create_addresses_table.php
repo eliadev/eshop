@@ -20,16 +20,16 @@ class CreateAddressesTable extends Migration
 			$table->string('postcode');
 			$table->longText('description')->nullable();
 			
-			$table->string('country_id', 3)->default(120);
-            $table->foreign('country_id')->references('code')->on('countries')->onDelete('cascade');
+			$table->unsignedBigInteger('country_id');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
 
-            $table->integer('state_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('state_id');
             $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
 			
-			$table->integer('city_id')->unsigned()->nullable();
+			$table->unsignedBigInteger('city_id');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
 			
-			$table->integer('user_id')->unsigned()->nullable();
+			$table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			
             $table->timestamps();

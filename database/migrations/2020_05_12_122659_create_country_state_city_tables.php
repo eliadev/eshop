@@ -14,20 +14,20 @@ class CreateCountryStateCityTables extends Migration
     public function up()
     {
 		Schema::create('countries', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
 			$table->string('sortname', 3)->index()->unique();
 			$table->integer('phonecode');
             $table->timestamps();
         });
         Schema::create('states', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->integer('country_id');            
             $table->timestamps();
         });
         Schema::create('cities', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
             $table->integer('state_id');            
             $table->timestamps();

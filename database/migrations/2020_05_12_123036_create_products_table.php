@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
 			$table->boolean('featured')->default(0);
 			$table->boolean('published')->default(0);
 			
-			$table->integer('brand_id')->unsigned();
+			$table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
 			
             $table->timestamps();

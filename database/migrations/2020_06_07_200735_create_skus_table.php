@@ -20,7 +20,7 @@ class CreateSkusTable extends Migration
 			$table->string('item_number');
 			$table->string('product_code');
 			
-			$table->integer('product_id')->unsigned();
+			$table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
 			
             $table->timestamps();
