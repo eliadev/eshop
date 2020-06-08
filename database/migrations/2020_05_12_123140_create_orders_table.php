@@ -34,10 +34,10 @@ class CreateOrdersTable extends Migration
             $table->boolean('shipped')->default(false);
             $table->string('error')->nullable();
 			
-			$table->integer('user_id')->unsigned()->nullable();
+			$table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 			
-			$table->integer('address_id')->unsigned()->nullable();
+			$table->unsignedBigInteger('address_id');
             $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
 			
             $table->timestamps();
