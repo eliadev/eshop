@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Brand;
 use App\Product;
+use App\Sku;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,11 +13,13 @@ class ProductController extends Controller
 {
 	protected $categories;
 	protected $brands;
+	protected $skus;
 
     public function __construct()
     {
         $this->categories = Category::all();
 		$this->brands = Brand::all();
+		$this->skus = Sku::all();
     }
 
     /**
@@ -83,7 +86,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit', [ 'product' => $product, 'categories' => $this->categories, 'brands' => $this->brands ]);
+        return view('admin.products.edit', [ 'product' => $product, 'categories' => $this->categories, 'brands' => $this->brands, 'skus' => $this->skus ]);
     }
 
     /**
@@ -108,6 +111,7 @@ class ProductController extends Controller
 		$data = $request->all();
 		$product->update($data);
 		$product->skus()->updateOrCreate($data['addmore']);
+		
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();
     }

@@ -78,6 +78,31 @@
 							<input id="published" name="published" type="checkbox" value="1" {{ ($product->published=="1")? "checked" : "" }}>
 							<label for="published"></label>
 						</div>
+						<div class="panel panel-footer">
+							<table class="table table-borderd">
+								<thead>
+									<tr>
+										<th>Color</th>
+										<th>Size</th>
+										<th>Item Number</th>
+										<th>Product Code</th>
+										<th><a href="#" class="btn btn-success addRow">+</a></th>
+									</tr>
+								</thead>
+								<tbody>
+								@foreach($skus as $key => $sku)
+									<tr>
+										<td><input type="text" name="addmore[{{$key}}][color]" value="{{$sku->color}}" class="form-control"></td>
+										<td><input type="email" name="addmore[{{$key}}][size]" value="{{$sku->size}}" class="form-control"></td>
+										<td><input type="text" name="addmore[{{$key}}][item_number]" value="{{$sku->item_number}}" class="form-control"></td>
+										<td><input type="text" name="addmore[{{$key}}][product_code]" value="{{$sku->product_code}}" class="form-control"></td>
+										<td><a href="#" class="btn btn-danger remove">X</a></td>
+									</tr>
+								@endforeach
+								</tbody>
+							</table>
+						</div>
+						<br>
 						<div class="form-group row">
 							<button type="submit" class="btn btn-success">UPDATE</button>
 							<a href="{{route('products.create')}}" class="btn btn-secondary">ADD NEW</a>
