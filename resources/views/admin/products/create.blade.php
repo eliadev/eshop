@@ -66,13 +66,13 @@
 										<th>Size</th>
 										<th>Item Number</th>
 										<th>Product Code</th>
-										<th><a href="#" class="btn btn-success addRow">+</a></th>
+										<th><span class="btn btn-success addRow">+</span></th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td><input type="text" name="addmore[0][color]" class="form-control"></td>
-										<td><input type="email" name="addmore[0][size]" class="form-control"></td>
+										<td><input type="text" name="addmore[0][size]" class="form-control"></td>
 										<td><input type="text" name="addmore[0][item_number]" class="form-control"></td>
 										<td><input type="text" name="addmore[0][product_code]" class="form-control"></td>
 										<td><a href="#" class="btn btn-danger remove">X</a></td>

@@ -93,7 +93,7 @@
 								@foreach($skus as $key => $sku)
 									<tr>
 										<td><input type="text" name="addmore[{{$key}}][color]" value="{{$sku->color}}" class="form-control"></td>
-										<td><input type="email" name="addmore[{{$key}}][size]" value="{{$sku->size}}" class="form-control"></td>
+										<td><input type="text" name="addmore[{{$key}}][size]" value="{{$sku->size}}" class="form-control"></td>
 										<td><input type="text" name="addmore[{{$key}}][item_number]" value="{{$sku->item_number}}" class="form-control"></td>
 										<td><input type="text" name="addmore[{{$key}}][product_code]" value="{{$sku->product_code}}" class="form-control"></td>
 										<td><a href="#" class="btn btn-danger remove">X</a></td>
