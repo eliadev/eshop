@@ -1,0 +1,4 @@
+- Image upload with media library (Elias) 
+- Product Orders / SKUS / CART (TDD)
+
+- Categories tree (Elie)
