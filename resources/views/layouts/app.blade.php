@@ -76,37 +76,5 @@
             @yield('content')
         </main>
     </div>
-	<script src="{{asset('cms/js/vendor.min.js')}}"></script>
-	<script type="text/javascript">
-        $(document).ready(function(){
-            var i = 0;
-            $('.addRow').on('click', function() {
-                addRow();
-            });
-
-            function addRow() {
-                
-                ++i;
-                var tr = '<tr>' +
-                    '<td><input type="text" name="addmore['+i+'][color]" class="form-control"></td>' +
-                    '<td><input type="text" name="addmore['+i+'][size]" class="form-control"></td>' +
-                    '<td><input type="text" name="addmore['+i+'][item_number]" class="form-control"></td>'+
-                    '<td><input type="text" name="addmore['+i+'][product_code]" class="form-control"></td>'+
-                    '<td><a href="#" class="btn btn-danger remove">X</a></td>' +
-                    '</tr>';
-                $('tbody').append(tr);
-            }; 
-         
-         });
-
-		$(document).on('click', '.remove', function() {
-			var last = $('tbody tr').length;
-			if (last == 1) {
-				alert("Last row cannot Delete");
-			} else {
-				$(this).parents('tr').remove();
-			}
-		});
-	</script>
 </body>
 </html>
