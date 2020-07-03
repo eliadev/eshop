@@ -1,4 +1,6 @@
-- Image upload with media library (Elias) 
-- Product Orders / SKUS / CART (TDD)
+- 1.a Categories
+- 1.b Add stock field to product
+- 3.a Orders (for last)
 
-- Categories tree (Elie)
+- 2.b implement front end
+- 2.c Cart

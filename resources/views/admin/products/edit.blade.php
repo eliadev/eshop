@@ -139,13 +139,12 @@
 													<th><span class="btn btn-success addRow">+</span></th>
 												</tr>
 											</thead>
-											<tbody>
 											@foreach($skus as $key => $sku)
 												<tr>
-													<td><input type="text" name="addmore[0][color]" value="{{$sku->color}}" class="form-control"></td>
-													<td><input type="text" name="addmore[0][size]" value="{{$sku->size}}" class="form-control"></td>
-													<td><input type="text" name="addmore[0][item_number]" value="{{$sku->item_number}}" class="form-control"></td>
-													<td><input type="text" name="addmore[0][product_code]" value="{{$sku->product_code}}" class="form-control"></td>
+													<td><input type="text" name="addmore[{{ $key }}][color]" value="{{$sku->color}}" class="form-control"></td>
+													<td><input type="text" name="addmore[{{ $key }}][size]" value="{{$sku->size}}" class="form-control"></td>
+													<td><input type="text" name="addmore[{{ $key }}][item_number]" value="{{$sku->item_number}}" class="form-control"></td>
+													<td><input type="text" name="addmore[{{ $key }}][product_code]" value="{{$sku->product_code}}" class="form-control"></td>
 													<td><span class="btn btn-danger remove">X</span></td>
 												</tr>
 											@endforeach
@@ -179,7 +178,7 @@
 			</script>
 			<script type="text/javascript">
 			$(document).ready(function(){
-				var i = 0;
+				var i = {{ count($skus) - 1 }}; // length of table rows
 				$('.addRow').on('click', function() {
 					addRow();
 				});
