@@ -80,13 +80,13 @@
 								<div class="card-box">
 									<h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Featured & Publishing</h5>
 									<div class="row">
-										<div class="form-group mb-3 col-md-12">
+										<div class="form-group mb-3 col-md-6">
 											<label for="featured">Featured</label>
 											<input class="tgl tgl-light" id="featured" name="featured" type="checkbox" value="1">
 											<label class="tgl-btn" for="featured"></label>
 										</div>
 									
-										<div class="form-group mb-3 col-md-12">
+										<div class="form-group mb-3 col-md-6">
 											<label for="published">Published</label>
 											<input class="tgl tgl-light" id="published" name="published" type="checkbox" value="1">
 											<label class="tgl-btn" for="published"></label>
@@ -152,42 +152,67 @@
 		</div>					
 @endsection
 @section('scripts')
-	<script>
-		$(function() {
-			// For select 2
-			$(".select2").select2();
-			$('.selectpicker').selectpicker();
-		});
-	</script>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		var i = 0;
-		$('.addRow').on('click', function() {
-			addRow();
-		});
+		<script>
+			$(function() {
+				// For select 2
+				$(".select2").select2();
+				$('.selectpicker').selectpicker();
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var i = 0;
+				$('.addRow').on('click', function() {
+					addRow();
+				});
 
-		function addRow() {
-			
-			++i;
-			var tr = '<tr>' +
-				'<td><input type="text" name="addmore['+i+'][color]" class="form-control"></td>' +
-				'<td><input type="text" name="addmore['+i+'][size]" class="form-control"></td>' +
-				'<td><input type="text" name="addmore['+i+'][item_number]" class="form-control"></td>'+
-				'<td><input type="text" name="addmore['+i+'][product_code]" class="form-control"></td>'+
-				'<td><span class="btn btn-danger remove">X</span></td>' +
-				'</tr>';
-			$('tbody').append(tr);
-		}; 
-	 
-	 });
+				function addRow() {
+					
+					++i;
+					var tr = '<tr>' +
+						'<td><input type="text" name="addmore['+i+'][color]" class="form-control"></td>' +
+						'<td><input type="text" name="addmore['+i+'][size]" class="form-control"></td>' +
+						'<td><input type="text" name="addmore['+i+'][item_number]" class="form-control"></td>'+
+						'<td><input type="text" name="addmore['+i+'][product_code]" class="form-control"></td>'+
+						'<td><span class="btn btn-danger remove">X</span></td>' +
+						'</tr>';
+					$('tbody').append(tr);
+				}; 
+			 
+			 });
 
-	$(document).on('click', '.remove', function() {
-		var last = $('tbody tr').length;
-		if (last == 1) {
-			alert("Last row cannot Delete");
-		} else {
-			$(this).parents('tr').remove();
-		}
-	});
-</script>
+			$(document).on('click', '.remove', function() {
+				var last = $('tbody tr').length;
+				if (last == 1) {
+					alert("Last row cannot Delete");
+				} else {
+					$(this).parents('tr').remove();
+				}
+			});
+		</script>
+		<script>
+		  var uploadedGalleryMap = {}
+		  Dropzone.options.galleryDropzone = {
+			url: '{{ route('products.storeMedia') }}',
+			maxFilesize: 2, // MB
+			addRemoveLinks: true,
+			headers: {
+			  'X-CSRF-TOKEN': "{{ csrf_token() }}"
+			},
+			success: function (file, response) {
+			  $('form').append('<input type="hidden" name="gallery_image[]" value="' + response.name + '">')
+			  uploadedGalleryMap[file.name] = response.name
+			},
+			removedfile: function (file) {
+			  file.previewElement.remove()
+			  var name = ''
+			  if (typeof file.file_name !== 'undefined') {
+				name = file.file_name
+			  } else {
+				name = uploadedGalleryMap[file.name]
+			  }
+			  $('form').find('input[name="gallery_image[]"][value="' + name + '"]').remove()
+			}
+		  }
+			</script>
 @endsection

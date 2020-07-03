@@ -47,6 +47,16 @@
 													<input type="text" id="name" name="name" value="{{$brand->name}}" class="form-control" placeholder="Name">
 												</div>
 												<div class="form-group mb-3">
+													<label for="image">Image</label>
+													<div class="row">
+														<div class="col-md-6"><input type="file" id="image" name="image" class="form-control"></div>
+														<div class="col-md-6">
+															<img src="{{$brand->getFirstMediaUrl('brand', 'thumb')}}">
+															<input type="checkbox" name="delete_existing_image" value="1">
+														</div>
+													</div>
+												</div>
+												<div class="form-group mb-3">
 													<label for="link">Link</label>
 													<input type="text" id="link" name="link" value="{{$brand->link}}" class="form-control" placeholder="link">
 												</div>

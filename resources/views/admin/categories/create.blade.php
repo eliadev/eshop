@@ -51,6 +51,11 @@
 												</div>
 												
 												<div class="form-group mb-3">
+													<label for="image">Image</label>
+													<input type="file" id="image" name="image" class="form-control">
+												</div>
+												
+												<div class="form-group mb-3">
 													<label for="description">Description</label>
 													<textarea class="form-control" name="description" id="summernote-editor"></textarea>
 												</div>

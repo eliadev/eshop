@@ -100,7 +100,7 @@
 				   </li>
 				   <li class="dropdown notification-list">
 					  <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-					  <img src="#" class="rounded-circle">
+					  <img src="{{ Auth::user()->getFirstMediaUrl('user', 'thumb') }}" class="rounded-circle">
 					  <span class="pro-user-name ml-1">
 					  {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} <i class="mdi mdi-chevron-down"></i> 
 					  </span>
@@ -125,7 +125,7 @@
 				   </li>
 				</ul>
 				<div class="logo-box">
-				   <a href="index.html" class="logo text-center">
+				   <a href="/admin" class="logo text-center">
 				   <span class="logo-lg">
 				   <img src="#" width="180">
 				   </span>

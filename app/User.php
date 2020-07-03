@@ -2,13 +2,18 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
+use Spatie\MediaLibrary\Models\Media;
+
+class User extends Authenticatable implements HasMedia
 {
-    use Notifiable;
+    use Notifiable, HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'position', 'phone', 'date_of_birth', 'password', 'is_superadmin', 'is_active'
+        'first_name', 'last_name', 'email', 'position', 'phone', 'date_of_birth', 'address', 'password', 'is_superadmin', 'is_active'
     ];
 
     /**
@@ -71,5 +76,12 @@ class User extends Authenticatable
     public function getHasAdminAccessAttribute()
     {
         return $this->is_superadmin || $this->permissions->count();
+    }
+	
+	public function registerMediaConversions(Media $media = null)
+    {
+        $this->addMediaConversion('thumb')
+            ->width(50)
+            ->height(50);
     }
 }

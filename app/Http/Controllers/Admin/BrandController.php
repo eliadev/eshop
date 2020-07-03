@@ -38,6 +38,15 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $brand = Brand::create($request->all());
+		
+		// Add Image
+		if ($request->image) {
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $brand
+                ->addMedia($request->image)
+                ->setFileName("brand-".$brand->id.'.'.$ext)
+                ->toMediaCollection('brand');
+        }
         
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('brands.index'));
@@ -74,6 +83,17 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
+		if($request->has('delete_existing_image'))
+            $brand->clearMediaCollection('brand');
+		
+		if (isset($request->image)) {
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $brand
+                ->addMedia($request->image)
+                ->setFileName("brand-".$brand->id.'.'.$ext)
+                ->toMediaCollection('brand');
+        }
+		
         $brand->update($request->all());
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();

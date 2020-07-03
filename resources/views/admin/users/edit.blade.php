@@ -75,8 +75,19 @@
 													<input type="text" id="position" name="position" value="{{$user->position}}" class="form-control" placeholder="Position">
 												</div>
 												<div class="form-group mb-3">
-													<label for="is_active">Active</label>
-													<input type="checkbox" name="is_active" class="form-control" value="1" {{ ($user->is_active == "1")? "checked" : "" }}>
+													<label for="image">Image</label>
+													<div class="row">
+														<div class="col-md-6"><input type="file" name="image" class="form-control"></div>
+														<div class="col-md-6">
+															<img src="{{$user->getFirstMediaUrl('user', 'thumb')}}">
+															<input type="checkbox" name="delete_existing_image" value="1">
+														</div>
+													</div>
+												</div>
+												<div class="form-group mb-3 col-md-6">
+													<label for="is_active">Published</label>
+													<input class="tgl tgl-light" id="is_active" name="is_active" type="checkbox" value="1" {{ ($user->is_active == "1")? "checked" : "" }}>
+													<label class="tgl-btn" for="is_active"></label>
 												</div>
 												<div class="form-group mb-3">
 													<label for="permission">Permission</label>

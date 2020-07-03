@@ -53,13 +53,13 @@ class UserController extends Controller
         $user = User::create($input);
 		$user->permissions()->sync($request->get('permission'));
 
-		/*if ($request->image) {
+		if ($request->image) {
             $ext = $request->file('image')->getClientOriginalExtension();
             $user
                 ->addMedia($request->image)
                 ->setFileName("user-".$user->id.'.'.$ext)
                 ->toMediaCollection('user');
-        }*/
+        }
 
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('users.index'));
@@ -96,7 +96,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-       /* if($request->has('delete_existing_image'))
+        if($request->has('delete_existing_image'))
             $user->clearMediaCollection('user');
 
 		if (isset($request->image)) {
@@ -105,7 +105,7 @@ class UserController extends Controller
                 ->addMedia($request->image)
                 ->setFileName("user-".$user->id.'.'.$ext)
                 ->toMediaCollection('user');
-        }*/
+        }
 
         $input = $request->all();
         if(!$request->get('password'))

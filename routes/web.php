@@ -29,5 +29,5 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->gr
 	Route::resource('cities', 'CityController');
 	Route::resource('categories', 'CategoryController');
 	Route::resource('products', 'ProductController');
-
+	Route::post('products/media', 'ProductController@storeMedia')->name('products.storeMedia');
 });

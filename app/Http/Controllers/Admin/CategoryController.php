@@ -39,6 +39,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $category = Category::create($request->all());
+		
+		// Add Image
+		if ($request->image) {
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $category
+                ->addMedia($request->image)
+                ->setFileName("category-".$category->id.'.'.$ext)
+                ->toMediaCollection('category');
+        }
         
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('categories.index'));
@@ -75,6 +84,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+		if($request->has('delete_existing_image'))
+            $category->clearMediaCollection('category');
+		
+		if (isset($request->image)) {
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $category
+                ->addMedia($request->image)
+                ->setFileName("category-".$category->id.'.'.$ext)
+                ->toMediaCollection('category');
+        }
+		
         $category->update($request->all());
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();

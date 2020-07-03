@@ -72,9 +72,10 @@
 														<label for="image">Image</label>
 														<input type="file" id="image" name="image" class="form-control">
 													</div>
-													<div class="form-group mb-3">
+													<div class="form-group mb-3 col-md-6">
 														<label for="is_active">Active</label>
-														<input type="checkbox" name="is_active" class="form-control" value="1" />
+														<input class="tgl tgl-light" id="is_active" name="is_active" type="checkbox" value="1">
+														<label class="tgl-btn" for="is_active"></label>
 													</div>
 													<div class="form-group mb-3">
 														<label for="permission">Permission</label>

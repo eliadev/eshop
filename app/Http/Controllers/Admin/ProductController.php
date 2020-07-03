@@ -60,6 +60,20 @@ class ProductController extends Controller
             $request['featured'] = 0;
 
 		$product->categories()->sync($request->categories);
+		
+		// Add Image
+		if ($request->image) {
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $product
+                ->addMedia($request->image)
+                ->setFileName("product-".$product->id.'.'.$ext)
+                ->toMediaCollection('product');
+        }
+		
+		// Add multiple images
+        foreach ($request->input('gallery_image', []) as $file) {
+            $product->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('gallery');
+        }
 
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('products.index'));
@@ -96,6 +110,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+		if($request->has('delete_existing_image'))
+            $product->clearMediaCollection('product');
+		
         // @TODO: check request merge for possible refactor
 		if(!$request->get('published'))
             $request['published'] = 0;
@@ -104,7 +121,30 @@ class ProductController extends Controller
             $request['featured'] = 0;
 
 		$product->categories()->sync($request->categories);
+		
+		if (isset($request->image)) {
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $product
+                ->addMedia($request->image)
+                ->setFileName("product-".$product->id.'.'.$ext)
+                ->toMediaCollection('product');
+        }
 
+        // Remove media files removed by the user on edit Product
+        if ( $product->getMedia('gallery')->count()) {
+            foreach ($product->getMedia('gallery') as $media) {
+                if (!in_array($media->file_name, $request->input('gallery_image', []))) {
+                    $media->delete();
+                }
+            }
+        }
+        // Add media file added by the user on edit Product
+        $media = $product->getMedia('gallery')->pluck('file_name')->toArray();
+        foreach ($request->input('gallery_image', []) as $file) {
+            if (count($media) === 0 || !in_array($file, $media)) {
+                $product->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('gallery');
+            }
+        }
 		
 		$data = $request->all();
 		$product->update($data);
@@ -126,5 +166,31 @@ class ProductController extends Controller
         $product->delete();
 		session()->flash('message', 'Your record has been deleted successfully');
 		return redirect(route('products.index'));
+    }
+	
+	/**
+     * Handles multiple image updoad.
+     * 
+     * @param  Request $request [description]
+     * @return [type]           [description]
+     */
+    public function storeMedia(Request $request)
+    {
+        $path = storage_path('tmp/uploads');
+
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+
+        $file = $request->file('file');
+
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
     }
 }

@@ -69,7 +69,7 @@
 													</div>
 												</td>
 												<td class="table-user">
-													<img src="#" class="mr-2 rounded-circle">
+													<img src="{{$user->getFirstMediaUrl('user', 'thumb')}}" class="mr-2 rounded-circle">
 													<a href="#" class="text-body font-weight-semibold">{{$user->first_name}} {{$user->last_name}}</a>
 												</td>
 												<td>{{$user->email}}</td>

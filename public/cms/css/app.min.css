@@ -55,6 +55,15 @@ body {
     border-color: #ced4da;
 }
 
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 1px solid #dee2e6;
+}
+
+span.stock-font {
+    font-size: 14px;
+}
+
 h4.header-title.bg-header {
     background: #00acc1;
     color: #fff;
@@ -1708,8 +1717,8 @@ body.boxed-layout.enlarged .footer {
 }
 
 .checkbox-primary input[type=checkbox]:checked+label::before {
-	background-color: #6658dd;
-	border-color: #6658dd
+	background-color: #55adc1;
+	border-color: #55adc1
 }
 
 .checkbox-primary input[type=checkbox]:checked+label::after {
@@ -3366,7 +3375,7 @@ body.authentication-bg-pattern {
 	position: absolute;
 	right: 0;
 	top: 0;
-	padding: 1.5rem 1.5rem 0 1.5rem;
+	padding: 1rem 1rem 0 1.5rem;
 	z-index: 3;
 	opacity: 0;
 	visibility: hidden;
@@ -3388,14 +3397,18 @@ body.authentication-bg-pattern {
 }
 
 .product-box .product-price-tag {
-	height: 48px;
-	line-height: 48px;
-	font-weight: 700;
-	font-size: 20px;
+	height: 42px;
+	line-height: 42px;
+	font-weight: 600;
+	font-size: 18px;
 	background-color: #f1f5f7;
 	text-align: center;
 	padding: 0 10px;
 	border-radius: 3px
+}
+
+.card-box.prod.product-box {
+    padding: 1rem;
 }
 
 .product-thumb {
