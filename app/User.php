@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -23,6 +24,8 @@ class User extends Authenticatable implements HasMedia
     protected $fillable = [
         'first_name', 'last_name', 'email', 'position', 'phone', 'date_of_birth', 'address', 'password', 'is_superadmin', 'is_active'
     ];
+	
+	protected $appends = ['slug'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -83,5 +86,25 @@ class User extends Authenticatable implements HasMedia
         $this->addMediaConversion('thumb')
             ->width(50)
             ->height(50);
+    }
+	
+	public function getShortNameAttribute()
+    {
+        $string = $this->last_name;
+        return $this->first_name.' '.Str::limit($string, 1, '.');
+    }
+	
+	public function getFullNameAttribute()
+    {
+        return $this->first_name.' '.$this->last_name;
+    }
+	
+	/**
+     * Slug Attribute
+     * @return [type] [description]
+     */
+    public function getSlugAttribute()
+    {
+        return Str::slug($this->name);
     }
 }

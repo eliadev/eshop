@@ -13,6 +13,7 @@
       <link href="{{asset('cms/css/app.min.css')}}" rel="stylesheet" type="text/css" />
 	  <link href="{{asset('cms/libs/bootstrap-table/bootstrap-table.min.css')}}" rel="stylesheet" type="text/css" />
 	  <link href="{{asset('cms/css/dropzone.min.css')}}" rel="stylesheet" type="text/css" />
+	  <link href="{{asset('cms/css/bootstrap-tagsinput.css')}}" rel="stylesheet" type="text/css" />
    </head>
    <body>
     <div class="preloader">
@@ -226,6 +227,7 @@
         <script src="{{asset('cms/libs/summernote/summernote-bs4.min.js')}}"></script>
         <script src="{{asset('cms/js/pages/form-summernote.init.js')}}"></script>
 		<script src="{{asset('cms/js/dropzone.min.js')}}"></script>
+		<script src="{{asset('cms/js/bootstrap-tagsinput.min.js')}}"></script>
 		@yield('scripts')
    </body>
 </html>		

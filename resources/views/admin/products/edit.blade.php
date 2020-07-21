@@ -88,6 +88,13 @@
 							</div>
 							<div class="col-lg-6">
 								<div class="card-box">
+									<h5 class="text-uppercase mt-0 mb-3 bg-light p-2">META DATA & SEO</h5>
+									<div class="form-group mb-3">
+										<label for="tag_list">Keywords</label>
+										<input type="text" name="tag_list" value="{{$product->tag_list}}" data-role="tagsinput" placeholder="add Keywords"/>
+									</div>
+								</div>
+								<div class="card-box">
 									<h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Featured & Publishing</h5>
 									<div class="row">
 										<div class="form-group mb-3 col-md-6">

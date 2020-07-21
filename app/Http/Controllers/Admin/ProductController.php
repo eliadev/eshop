@@ -6,6 +6,7 @@ use App\Category;
 use App\Brand;
 use App\Product;
 use App\Sku;
+use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -60,6 +61,15 @@ class ProductController extends Controller
             $request['featured'] = 0;
 
 		$product->categories()->sync($request->categories);
+		
+		//Tags
+        $tags = explode(",", $request['tags']);
+        $tagIds = [];
+        foreach($tags as $tag) {
+            $tag = Tag::firstOrCreate(['name' => $tag]);
+            array_push($tagIds, $tag->id);
+        }
+        $product->tags()->sync($tagIds);   
 		
 		// Add Image
 		if ($request->image) {
@@ -121,6 +131,17 @@ class ProductController extends Controller
             $request['featured'] = 0;
 
 		$product->categories()->sync($request->categories);
+		
+		//Tags
+		$tags = explode(",", $request['tag_list']);
+        $tagIds = [];
+        foreach($tags as $tag) {
+            $tag = Tag::firstOrCreate(['name' => $tag]);
+            array_push($tagIds, $tag->id);
+        }
+		
+        // Attach tags
+        $product->tags()->sync($tagIds); 
 		
 		if (isset($request->image)) {
             $ext = $request->file('image')->getClientOriginalExtension();

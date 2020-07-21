@@ -13,12 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'HomeController@index')->name('front.home');
+Route::get('/home', 'HomeController@index')->name('front.home');
+
+Route::get('/guest/login', 'HomeController@login')->name('front.login');
+Route::post('/guest/doLogin', 'HomeController@doLogin')->name('front.doLogin');
+
+Route::get('/profile/{id}', 'UserController@show')->name('front.profile.show');
+Route::put('/profile/{user}', 'UserController@update')->name('front.profile.update');
+
+Route::get('products/', 'ProductController@index')->name('front.products');
+Route::get('/product/{id}/{slug}', 'ProductController@show')->name('front.product.show');
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
 	Route::get('/', 'HomeController@index')->name('home');

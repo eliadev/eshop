@@ -91,6 +91,23 @@ hr.hr-create {
 	margin-bottom: 2rem;
 }
 
+.bootstrap-tagsinput .label-info {
+    background-color: #00abc0;
+    display: inline-block;
+    padding: 0 8px;
+    font-size: 13px;
+    margin: 3px 1px;
+    border-radius: 3px;
+}
+
+.bootstrap-tagsinput {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 3px 7px 6px;
+    border: 1px solid #e3e3e3;
+    width: 100% !important;
+}
+
 input[type=file] {
     height: auto;
 }

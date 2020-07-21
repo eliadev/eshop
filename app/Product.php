@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
@@ -15,9 +17,9 @@ class Product extends Model implements HasMedia
 	protected $table = "products";
 	protected $fillable = ['name', 'description', 'price', 'reference', 'featured', 'published', 'brand_id'];
     
-    protected $with = [ 'skus' ];
+    protected $with = ['skus'];
 
-    protected $appends = [ 'quantity' ];
+    protected $appends = ['quantity'];
 
     public function brand() {
         return $this->belongsTo('App\Brand');
@@ -30,6 +32,17 @@ class Product extends Model implements HasMedia
 	public function skus()
     {
         return $this->hasMany('App\Sku');
+    }
+	
+	public function tags()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+	
+	public function getTagListAttribute()
+    {
+        $tags = $this->tags->pluck('name')->toArray();
+        return implode("," , $tags);
     }
 
     public function getQuantityAttribute() {
@@ -45,5 +58,14 @@ class Product extends Model implements HasMedia
         $this->addMediaConversion('thumb')
             ->width(50)
             ->height(50);
+    }
+	
+	/**
+     * Slug Attribute
+     * @return [type] [description]
+     */
+    public function getSlugAttribute()
+    {
+		return Str::slug($this->name);
     }
 }
