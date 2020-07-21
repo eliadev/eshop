@@ -25,8 +25,8 @@ Route::get('/home', 'HomeController@index')->name('front.home');
 Route::get('/guest/login', 'HomeController@login')->name('front.login');
 Route::post('/guest/doLogin', 'HomeController@doLogin')->name('front.doLogin');
 
-Route::get('/profile/{id}', 'UserController@show')->name('front.profile.show');
-Route::put('/profile/{user}', 'UserController@update')->name('front.profile.update');
+Route::get('/profile', 'UserController@show')->name('front.profile.show');
+Route::post('/update-profile', 'UserController@update')->name('front.profile.update');
 
 Route::get('products/', 'ProductController@index')->name('front.products');
 Route::get('/product/{id}/{slug}', 'ProductController@show')->name('front.product.show');

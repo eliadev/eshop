@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App;
 use Auth;
 use App\tag;
@@ -21,13 +22,16 @@ class ProductController extends Controller
 	
 	public function show($id)
     {
+    	//DB::connection()->enableQueryLog();
 		$categories = Category::all();
-		$product = Product::with('skus')->find($id);
+		$product = Product::with(['skus', 'tags'])->find($id);
 
 		$relatedProducts = Product::whereHas('tags', function ($q) use ($product) {
 			return $q->whereIn('name', $product->tags->pluck('name')); 
 		})->where('id', '!=', $product->id)->get();
 		
+		//$queries = DB::getQueryLog();
+		//dd($queries);
 		return view('front.product-details', ['categories' => $categories, 'product' => $product, 'relatedProducts' => $relatedProducts]);
     }
 }

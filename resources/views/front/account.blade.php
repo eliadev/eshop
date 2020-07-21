@@ -158,20 +158,19 @@
 													</div>
 												@endif
                                                 <div class="account-details-form">
-                                                    <form method="PSOT" action="{{route('front.profile.update', $user->id)}}">
-													@csrf
-													@method('PUT')
+                                                    <form method="POST" action="{{route('front.profile.update')}}">
+													   @csrf
                                                         <div class="row">
                                                             <div class="col-lg-6">
                                                                 <div class="single-input-item">
                                                                     <label for="first_name" class="required">First Name</label>
-                                                                    <input type="text" id="first_name" value="{{ Auth::user()->first_name }}" placeholder="First Name" />
+                                                                    <input type="text" id="first_name" name="first_name" value="{{ $user->first_name }}" placeholder="First Name" />
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
                                                                 <div class="single-input-item">
                                                                     <label for="last_name" class="required">Last Name</label>
-                                                                    <input type="text" id="last_name" value="{{ Auth::user()->last_name }}" placeholder="Last Name" />
+                                                                    <input type="text" id="last_name" name="last_name" value="{{ $user->last_name }}" placeholder="Last Name" />
                                                                 </div>
                                                             </div>
                                                         </div>

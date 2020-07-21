@@ -17,23 +17,25 @@ class UserController extends Controller
         }
 		
 		$user = Auth::user();
-		
     	return view('front.account', ['user' => $user ]);
     }
 	
-	public function update(Request $request, $id)
+	public function update(Request $request)
 	{
-		$user = User::find($id);
+		if(!Auth::check())
+        {
+            return redirect()->route('front.login')->with('status', 'Login before Accessing your Account!');
+        }
+		
 		/*$this->validate($request, [
 			'title' => 'required',
 			'description' => 'required'
 		]);*/
 
-		$input = $request->all();
-		$user->fill($input)->save();
-		//$user->update($request->all());
+		$user = Auth::user();
+		$user->update($request->all());
 		
 		session()->flash('message', 'Your record has been updated successfully');
-		return redirect()->back();
+		return redirect( route('front.profile.show') );
 	}
 }

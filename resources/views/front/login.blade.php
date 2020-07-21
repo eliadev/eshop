@@ -25,6 +25,16 @@
                         <div class="col-lg-6"> 
                             <div class="login-reg-form-wrap  pr-lg-50">
                                 <h2>Sign In</h2>
+                                @if($errors->all())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{$error}}</li>         
+                                        @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                                
 								@if (session('status'))
 									<div class="alert alert-danger">
 									  {{ session('status') }}
