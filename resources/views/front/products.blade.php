@@ -172,7 +172,9 @@
 										</div>
 										<div class="product-description text-center">
 											<div class="manufacturer">
-											   <p><a href="#">Category Name</a></p>
+                                                @foreach($product->categories as $category)
+											         <p><a href="#">{{ $category->name }}</a></p>
+                                                 @endforeach
 											</div>
 											<div class="product-name">
 											   <h3><a href="{{ route('front.product.show', [$product->id, $product->slug]) }}">{{ $product->name }}</a></h3>
