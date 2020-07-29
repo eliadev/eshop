@@ -24,13 +24,13 @@
                         <div class="myaccount-page-wrapper">
                             <div class="row">
                                 <div class="col-lg-3 col-md-4">
-                                    <div class="myaccount-tab-menu nav" role="tablist">
-                                        <a href="#dashboad" class="active" data-toggle="tab"><i class="fa fa-dashboard"></i> Dashboard</a>
-                                        <a href="#orders" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> My Orders</a>
-                                        <a href="#download" data-toggle="tab"><i class="fa fa-cloud-download"></i> My Store Receipts</a>
-                                        <a href="#payment-method" data-toggle="tab"><i class="fa fa-credit-card"></i> My Shopping Lists</a>
-                                        <a href="#address-edit" data-toggle="tab"><i class="fa fa-map-marker"></i> My Addresses</a>
-                                        <a href="#account-info" data-toggle="tab"><i class="fa fa-user"></i> Account Details</a>
+                                    <div id="myTab1" class="myaccount-tab-menu nav" role="tablist">
+                                        <a href="#dashboad" class="active" role="tab" data-toggle="tab"><i class="fa fa-dashboard"></i> Dashboard</a>
+                                        <a href="#orders" role="tab" data-toggle="tab"><i class="fa fa-cart-arrow-down"></i> My Orders</a>
+                                        <a href="#download" role="tab" data-toggle="tab"><i class="fa fa-cloud-download"></i> My Store Receipts</a>
+                                        <a href="#payment-method" role="tab" data-toggle="tab"><i class="fa fa-credit-card"></i> My Shopping Lists</a>
+                                        <a href="#address-edit" role="tab" data-toggle="tab"><i class="fa fa-map-marker"></i> My Addresses</a>
+                                        <a href="#account-info" role="tab" data-toggle="tab"><i class="fa fa-user"></i> Account Details</a>
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> Logout</a>
 										<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 											@csrf
@@ -40,17 +40,17 @@
 
                                 <div class="col-lg-9 col-md-8">
                                     <div class="tab-content" id="myaccountContent">
-                                        <div class="tab-pane fade show active" id="dashboad" role="tabpanel">
+                                        <div class="tab-pane fade show active" id="dashboad">
                                             <div class="myaccount-content">
                                                 <h3>Dashboard</h3>
                                                 <div class="welcome">
-                                                    <p>Hello, <strong>{{ Auth::user()->FullName }} </strong> (If Not <strong>{{ Auth::user()->first_name }} !</strong> Logout)</p>
+                                                    <p>Hello, <strong>{{ Auth::user()->FullName }} </strong> (If Not <strong>{{ Auth::user()->first_name }}!</strong> Logout)</p>
                                                 </div>
                                                 <p class="mb-0">From your account dashboard. you can easily check & view your recent orders, manage your shipping and billing addresses and edit your password and account details.</p>
                                             </div>
                                         </div>
                                         
-                                        <div class="tab-pane fade" id="orders" role="tabpanel">
+                                        <div class="tab-pane fade" id="orders">
                                             <div class="myaccount-content">
                                                 <h3>Orders</h3>
                                                 <div class="myaccount-table table-responsive text-center">
@@ -91,7 +91,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="download" role="tabpanel">
+                                        <div class="tab-pane fade" id="download">
                                             <div class="myaccount-content">
                                                 <h3>My Store Receipts</h3>
                                                 <div class="myaccount-table table-responsive text-center">
@@ -122,13 +122,62 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="payment-method" role="tabpanel">
+                                        <div class="tab-pane fade" id="payment-method">
                                             <div class="myaccount-content">
                                                 <h3>My Shopping Lists</h3>
-                                                <p class="saved-message">You Can't Saved Your Payment Method yet.</p>
+												<div class="cart-table table-responsive">
+													<table class="table table-bordered">
+														<thead>
+														<tr>
+															<th class="pro-thumbnail">Thumbnail</th>
+															<th class="pro-title">Product</th>
+															<th class="pro-price">Price</th>
+															<th class="pro-quantity">Quantity</th>
+															<th class="pro-subtotal">Add to Cart</th>
+															<th class="pro-remove">Remove</th>
+														</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product/product-5.jpg" alt="Product"/></a></td>
+																<td class="pro-title"><a href="#">element snowboard</a></td>
+																<td class="pro-price"><span>$295.00</span></td>
+																<td class="pro-quantity">
+																<form action="{{ route('cart.update') }}" method="POST">
+																	{{ csrf_field() }}
+																	<div class="form-group row">
+																		<input type="hidden" value="1" id="id" name="id">
+																		<div class="pro-qty"><input type="text" value="1" id="quantity" name="quantity"></div>
+																		<button><i class="fa fa-pencil"></i></button>
+																	</div>
+																</form>
+																</td>
+																<td class="pro-subtotal"><a href="cart.html" class="sqr-btn text-white">Add to Cart</a></td>
+																<td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+															</tr>
+															<tr>
+																<td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product/product-6.jpg" alt="Product"/></a></td>
+																<td class="pro-title"><a href="#">raygun snowboard</a></td>
+																<td class="pro-price"><span>$275.00</span></td>
+																<td class="pro-quantity">
+																<form action="{{ route('cart.update') }}" method="POST">
+																	{{ csrf_field() }}
+																	<div class="form-group row">
+																		<input type="hidden" value="1" id="id" name="id">
+																		<div class="pro-qty"><input type="text" value="1" id="quantity" name="quantity"></div>
+																		<button><i class="fa fa-pencil"></i></button>
+																	</div>
+																</form>
+																</td>
+																<td class="pro-subtotal"><a href="cart.html" class="sqr-btn text-white">Add to Cart</a></td>
+																<td class="pro-remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="address-edit" role="tabpanel">
+                                        <div class="tab-pane fade" id="address-edit">
                                             <div class="myaccount-content">
                                                 <h3>Billing Address</h3>
                                                 <address>
@@ -140,7 +189,7 @@
                                                 <a href="#" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="account-info" role="tabpanel">
+                                        <div class="tab-pane fade" id="account-info">
                                             <div class="myaccount-content">
                                                 <h3>Account Details</h3>
 												@if(session()->has('message'))
@@ -179,21 +228,27 @@
 															<div class="col-lg-6">
 																<div class="single-input-item">
 																	<label for="phone" class="required">Phone</label>
-																	<input type="text" id="phone" value="{{ Auth::user()->phone }}" placeholder="Phone" />
+																	<input type="text" id="phone" name="phone" value="{{ Auth::user()->phone }}" placeholder="Phone" />
 																</div>
 															</div>
 															<div class="col-lg-6">
 																<div class="single-input-item">
 																	<label for="date_of_birth" class="required">Date of Birth</label>
-																	<input type="date" id="date_of_birth" value="{{ Auth::user()->date_of_birth }}" placeholder="Date of Birth" />
+																	<input type="date" id="date_of_birth" name="date_of_birth" value="{{ Auth::user()->date_of_birth }}" placeholder="Date of Birth" />
 																</div>
 															</div>
                                                         </div>
 														<div class="row">
-															<div class="col-lg-12">
+															<div class="col-lg-6">
 																<div class="single-input-item">
 																	<label for="email" class="required">Email Addres</label>
-																	<input type="email" id="email" value="{{ Auth::user()->email }}" placeholder="Email Address" />
+																	<input type="email" id="email" name="email" value="{{ Auth::user()->email }}" placeholder="Email Address" />
+																</div>
+															</div>
+															<div class="col-lg-6">
+																<div class="single-input-item">
+																	<label for="password" class="required">Password</label>
+																	<input type="password" id="password" name="password" value="{{ Auth::user()->password }}" placeholder="Password" />
 																</div>
 															</div>
                                                         </div>

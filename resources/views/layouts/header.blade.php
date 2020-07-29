@@ -46,42 +46,10 @@
                         <div class="header-mini-cart">
                            <div class="mini-cart-btn">
                               <i class="ion-bag"></i>
-                              <span class="cart-notification">2</span>
+                              <span class="cart-notification">{{ \Cart::getTotalQuantity() }}</span>
                            </div>
                            <ul class="cart-list">
-                              <li>
-                                 <div class="cart-img">
-                                    <a href="product-details.html"><img src="{{asset('assets/img/cart/cart-1.jpg')}}"
-                                       alt=""></a>
-                                 </div>
-                                 <div class="cart-info">
-                                    <h4><a href="product-details.html">simple product 09</a></h4>
-                                    <span>$60.00</span>
-                                 </div>
-                                 <div class="del-icon">
-                                    <i class="fa fa-times"></i>
-                                 </div>
-                              </li>
-                              <li>
-                                 <div class="cart-img">
-                                    <a href="product-details.html"><img src="{{asset('assets/img/cart/cart-2.jpg')}}"
-                                       alt=""></a>
-                                 </div>
-                                 <div class="cart-info">
-                                    <h4><a href="product-details.html">virtual product 10</a></h4>
-                                    <span>$50.00</span>
-                                 </div>
-                                 <div class="del-icon">
-                                    <i class="fa fa-times"></i>
-                                 </div>
-                              </li>
-                              <li class="mini-cart-price">
-                                 <span class="subtotal">subtotal : </span>
-                                 <span class="subtotal-price ml-auto">$110.00</span>
-                              </li>
-                              <li class="checkout-btn">
-                                 <a href="#">checkout</a>
-                              </li>
+								@include('partials.cart-drop')
                            </ul>
                         </div>
 						@guest
@@ -100,7 +68,7 @@
                               <li>
                                  <i class="fa fa-user"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                                  <ul>
-                                    <li><a href="{{ route('front.profile.show', [Auth::user()->id, Auth::user()->slug]) }}">My Account</a></li>
+                                    <li><a href="{{ route('front.profile.show') }}">My Account</a></li>
                                     <li><a href="{{ route('logout') }}"onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}</a>
@@ -282,5 +250,33 @@
       <script src="{{asset('assets/js/plugins.js')}}"></script>
       <script src="{{asset('assets/js/ajax-mail.js')}}"></script>
       <script src="{{asset('assets/js/main.js')}}"></script>
+	  <script>
+		// cache the id
+		var navbox = $('#myTab1');
+		// activate tab on click
+		navbox.on('click', 'a', function (e) {
+		  var $this = $(this);
+		  // prevent the Default behavior
+		  e.preventDefault();
+		  // set the hash to the address bar
+		  window.location.hash = $this.attr('href');
+		  // activate the clicked tab
+		  $this.tab('show');
+		});
+
+		function refreshHash(){
+			navbox.find('a[href="'+window.location.hash+'"]').tab('show');
+		}
+
+		$(window).bind('hashchange', function() {
+			refreshHash();
+		});
+
+		// if we have a hash in the address bar
+		if(window.location.hash){
+		  // show right tab on load (read hash from address bar)
+		  refreshHash();
+		}
+	</script>
    </body>
 </html>

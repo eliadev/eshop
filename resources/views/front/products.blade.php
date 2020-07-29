@@ -151,431 +151,53 @@
                     <div class="col-xl-9 col-lg-8 order-1 order-lg-2">
                         <div class="shop-product-wrapper">
                             <div class="shop-product-wrap grid row">
-                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
-                                    <div class="product-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>-5%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-                                             
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-description text-center">
-                                            <div class="manufacturer">
-                                                <p><a href="product-details.html">Category Title</a></p>
-                                            </div>
-                                            <div class="product-name">
-                                                <h3><a href="product-details.html">Product Title</a></h3>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price">$100.00</span>
-                                                <span class="old-price"><del>$120.00</del></span>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="product-list-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>-5%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-                  
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-list-content">
-                                            <h4><a href="#">Category Title</a></h4>
-                                            <h3><a href="product-details.html">Crown Summit Backpacks</a></h3>
-                                           
-                                            <div class="pricebox">
-                                                <span class="regular-price">$70.00</span>
-                                                <span class="old-price"><del>$90.00</del></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit.</p>
-                                            <div class="product-btn product-btn__color">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
-                                    <div class="product-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>-5%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-                       
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-description text-center">
-                                            <div class="manufacturer">
-                                                <p><a href="product-details.html">Category Title</a></p>
-                                            </div>
-                                            <div class="product-name">
-                                                <h3><a href="product-details.html">Product Title</a></h3>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price">$100.00</span>
-                                                <span class="old-price"><del>$120.00</del></span>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="product-list-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>-5%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-                  
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-list-content">
-                                            <h4><a href="#">Category Title</a></h4>
-                                            <h3><a href="product-details.html">Crown Summit Backpacks</a></h3>
-                                            
-                                            <div class="pricebox">
-                                                <span class="regular-price">$70.00</span>
-                                                <span class="old-price"><del>$90.00</del></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit.</p>
-                                            <div class="product-btn product-btn__color">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                               
-                                
-                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
-                                    <div class="product-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-           
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-description text-center">
-                                            <div class="manufacturer">
-                                                <p><a href="product-details.html">Category Title</a></p>
-                                            </div>
-                                            <div class="product-name">
-                                                <h3><a href="product-details.html">Product Title</a></h3>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price">$100.00</span>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="product-list-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>-5%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-     
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-list-content">
-                                            <h4><a href="#">Category Title</a></h4>
-                                            <h3><a href="product-details.html">Crown Summit Backpacks</a></h3>
- 
-                                            <div class="pricebox">
-                                                <span class="regular-price">$70.00</span>
-                                                <span class="old-price"><del>$90.00</del></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit.</p>
-                                            <div class="product-btn product-btn__color">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
-                                    <div class="product-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                       
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-         
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-description text-center">
-                                            <div class="manufacturer">
-                                                <p><a href="product-details.html">Category Title</a></p>
-                                            </div>
-                                            <div class="product-name">
-                                                <h3><a href="product-details.html">Product Title</a></h3>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price">$100.00</span>
-                                                <span class="old-price"><del>$120.00</del></span>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="product-list-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/product/product-8.jpg" alt="product image">
-                                            </a>
-                                            
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-      
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-list-content">
-                                            <h4><a href="#">Category Title</a></h4>
-                                            <h3><a href="product-details.html">Crown Summit Backpacks</a></h3>
-                                            
-                                            <div class="pricebox">
-                                                <span class="regular-price">$70.00</span>
-                                                <span class="old-price"><del>$90.00</del></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit.</p>
-                                            <div class="product-btn product-btn__color">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
-                                    <div class="product-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            <div class="box-label">
-                                             
-                                                
-                                            </div>
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-                
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-description text-center">
-                                            <div class="manufacturer">
-                                                <p><a href="product-details.html">Category Title</a></p>
-                                            </div>
-                                            <div class="product-name">
-                                                <h3><a href="product-details.html">Product Title</a></h3>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price">$100.00</span>
-                                                <span class="old-price"><del>$120.00</del></span>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="product-list-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-list-content">
-                                            <h4><a href="#">Category Title</a></h4>
-                                            <h3><a href="product-details.html">Crown Summit Backpacks</a></h3>
-                                            
-                                            <div class="pricebox">
-                                                <span class="regular-price">$70.00</span>
-                                                <span class="old-price"><del>$90.00</del></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit.</p>
-                                            <div class="product-btn product-btn__color">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6">
-                                    <div class="product-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>-5%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-description text-center">
-                                            <div class="manufacturer">
-                                                <p><a href="product-details.html">Category Title</a></p>
-                                            </div>
-                                            <div class="product-name">
-                                                <h3><a href="product-details.html">Product Title</a></h3>
-                                            </div>
-                                            <div class="price-box">
-                                                <span class="regular-price">$100.00</span>
-                                                <span class="old-price"><del>$120.00</del></span>
-                                            </div>
-                                            <div class="product-btn">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                           
-                                        </div>
-                                    </div>
-                                    <div class="product-list-item mb-20">
-                                        <div class="product-thumb">
-                                            <a href="product-details.html">
-                                                <img src="assets/img/1.jpg" alt="product image">
-                                            </a>
-                                            <div class="box-label">
-                                                <div class="product-label new">
-                                                    <span>new</span>
-                                                </div>
-                                                <div class="product-label discount">
-                                                    <span>-5%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-action-link">
-                                                <a href="#" data-toggle="modal" data-target="#quick_view"> <span
-                                                    data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span> </a>
-
-                                                <a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i
-                                                    class="ion-ios-shuffle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="product-list-content">
-                                            <h4><a href="#">Category Title</a></h4>
-                                            <h3><a href="product-details.html">Crown Summit Backpacks</a></h3>
-                                            
-                                            <div class="pricebox">
-                                                <span class="regular-price">$70.00</span>
-                                                <span class="old-price"><del>$90.00</del></span>
-                                            </div>
-                                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Phasellus id nisi quis justo tempus mollis sed et dui. In hac habitasse platea dictumst. Suspendisse ultrices mauris diam. Nullam sed aliquet elit.</p>
-                                            <div class="product-btn product-btn__color">
-                                                <a href="#"><i class="ion-bag"></i>Add to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
+                                @foreach($products as $product)
+								<div class="col-md-4 col-12">
+									<div class="product-item mb-20">
+										<div class="product-thumb">
+											<a href="{{ route('front.product.show', [$product->id, $product->slug]) }}">
+												<img src="{{ $product->getFirstMediaUrl('product') }}" alt="{{ $product->name }}">
+											</a>
+											<div class="box-label">
+												<div class="product-label new">
+													<span>new</span>
+												</div>
+											</div>
+											<div class="product-action-link">
+												<div class="product-action-link">
+													<a href="#" data-toggle="modal" data-target="#quick_view"> <span data-toggle="tooltip" data-placement="left" title="Quick view"><i class="ion-ios-eye-outline"></i></span></a>
+													<a href="#" data-toggle="tooltip" data-placement="left" title="Wishlist"><i class="ion-ios-shuffle"></i></a>
+												</div>
+											</div>
+										</div>
+										<div class="product-description text-center">
+											<div class="manufacturer">
+											   <p><a href="#">Category Name</a></p>
+											</div>
+											<div class="product-name">
+											   <h3><a href="{{ route('front.product.show', [$product->id, $product->slug]) }}">{{ $product->name }}</a></h3>
+											</div>
+											<div class="price-box">
+												<span class="regular-price">$60.00</span>
+												<span class="old-price"><del>${{ $product->price }}</del></span>
+											</div>
+											<form action="{{ route('cart.store') }}" method="POST">
+												{{ csrf_field() }}
+												<input type="hidden" value="{{ $product->id }}" id="id" name="id">
+												<input type="hidden" value="{{ $product->name }}" id="name" name="name">
+												<input type="hidden" value="{{ $product->price }}" id="price" name="price">
+												<input type="hidden" value="1" id="quantity" name="quantity">
+												<div class="product-btn">
+													<button class="buttons parallelogram">
+														<i class="ion-bag"></i>Add to cart
+													</button>
+												</div>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+								@endforeach
                             </div>
                         </div>
                         <div class="paginatoin-area text-center mt-18">

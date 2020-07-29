@@ -18,8 +18,7 @@ class Product extends Model implements HasMedia
 	protected $fillable = ['name', 'description', 'price', 'reference', 'featured', 'published', 'brand_id'];
     
     protected $with = ['skus'];
-
-    protected $appends = ['quantity'];
+    protected $appends = ['slug'];
 
     public function brand() {
         return $this->belongsTo('App\Brand');
@@ -45,9 +44,10 @@ class Product extends Model implements HasMedia
         return implode("," , $tags);
     }
 
-    public function getQuantityAttribute() {
+    /*public function getQuantityAttribute() 
+	{
         return $this->skus->count();
-    }
+    }*/
 	
 	public function registerMediaConversions(Media $media = null)
     {

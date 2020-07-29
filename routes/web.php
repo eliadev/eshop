@@ -31,6 +31,13 @@ Route::post('/update-profile', 'UserController@update')->name('front.profile.upd
 Route::get('products/', 'ProductController@index')->name('front.products');
 Route::get('/product/{id}/{slug}', 'ProductController@show')->name('front.product.show');
 
+
+Route::get('/cart', 'CartController@cart')->name('cart.index');
+Route::post('/add', 'CartController@add')->name('cart.store');
+Route::post('/update', 'CartController@update')->name('cart.update');
+Route::post('/remove', 'CartController@remove')->name('cart.remove');
+Route::post('/clear', 'CartController@clear')->name('cart.clear');
+
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::resource('users', 'UserController');

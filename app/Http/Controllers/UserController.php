@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App;
 use Auth;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -33,7 +34,14 @@ class UserController extends Controller
 		]);*/
 
 		$user = Auth::user();
-		$user->update($request->all());
+		
+		$input = $request->all();
+        if(!$request->get('password'))
+            $input['password'] = $user->password;
+        else
+            $input['password'] = Hash::make($request->get('password'));
+
+        $user->update($input);
 		
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect( route('front.profile.show') );
