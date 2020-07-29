@@ -32,7 +32,7 @@ Route::get('products/', 'ProductController@index')->name('front.products');
 Route::get('/product/{id}/{slug}', 'ProductController@show')->name('front.product.show');
 
 
-Route::get('/cart', 'CartController@cart')->name('cart.index');
+Route::get('/cart', 'CartController@index')->name('cart.index');
 Route::post('/add', 'CartController@add')->name('cart.store');
 Route::post('/update', 'CartController@update')->name('cart.update');
 Route::post('/remove', 'CartController@remove')->name('cart.remove');

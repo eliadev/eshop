@@ -187,8 +187,11 @@
 												<input type="hidden" value="{{ $product->name }}" id="name" name="name">
 												<input type="hidden" value="{{ $product->price }}" id="price" name="price">
 												<input type="hidden" value="1" id="quantity" name="quantity">
-												<div class="product-btn">
-													<button class="buttons parallelogram">
+                                                <input type="hidden" value="{{ $product->slug }}" id="slug" name="slug" />
+                                                <input type="hidden" value="{{ $product->getFirstMediaUrl('product') }}" id="image" name="image" />
+												
+                                                <div class="product-btn">
+													<button class="buttons parallelogram" type="submit">
 														<i class="ion-bag"></i>Add to cart
 													</button>
 												</div>
