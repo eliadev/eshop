@@ -16,7 +16,7 @@ class CartController extends Controller
     }
 	
 	public function add(Request $request)
-	{
+	{  
         Cart::add(array(
             'id' => $request->id,
             'name' => $request->name,
@@ -26,11 +26,10 @@ class CartController extends Controller
             'slug' => $request->slug
         ));
 		
-		//echo "add succ";
-		/*
 		if ($request->ajax()) {	
-			return view('front.product_data', compact('products'));
-		}*/
+			//return view('front.product_data', compact('products'));
+            return response()->json('cart item added');
+		}
 		
         return redirect()->route('cart.index')->with('success_msg', 'Item is Added to Cart!');
     }

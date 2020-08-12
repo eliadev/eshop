@@ -3,7 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	  <meta name="csrf-token" content="{{ csrf_token() }}">
+      <meta name="csrf-token" content="{{ csrf_token() }}">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Right Left</title>
       <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -280,59 +280,47 @@
 		}
 	</script>
 	<script>
+       $.ajaxSetup({
+          headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+       });
+
 		$(document).ready(function () {
-			$('#add').on('click', function (e) {
-				event.preventDefault();
+			$('.addcart').on('click', function (e) {
+            event.preventDefault();
+
+            let btn = $(this);
 				let formData = $(this).closest('form').serialize();
-				$("#add").prop("disabled", true);
-		 
-				$.ajax({
-					type: "POST",
-					url: "{{url('add')}}",
-					processData: false,
-					contentType: false,
-					cache: false,
-					success: function (data) {
-						$("#output").text(data);
-						console.log("SUCCESS : ", data);
-						$("#add").prop("disabled", false);
-					},
-					error: function (e) {
-						$("#output").text(e.responseText);
-						console.log("ERROR : ", e);
-						$("#add").prop("disabled", false);
-					}
-				});
+				btn.prop("disabled", true);
+		       window.console.log(formData);
+
+            $.post("add", formData, function(response, status) {
+                  $("#output").text(response);
+                  console.log("SUCCESS : ", response);
+                  btn.prop("disabled", false);
+            });
+				
+            // $.ajax({
+				// 	type: "POST",
+				// 	url: "{{url('add')}}",
+    //            data: formData,
+				// 	processData: false,
+				// 	contentType: false,
+				// 	cache: false,
+				// 	success: function (data) {
+				// 		$("#output").text(data);
+				// 		console.log("SUCCESS : ", data);
+				// 		btn.prop("disabled", false);
+				// 	},
+				// 	error: function (e) {
+				// 		$("#output").text(e.responseText);
+				// 		console.log("ERROR : ", e);
+				// 		btn.prop("disabled", false);
+				// 	}
+				// });
 			});
 		});
 	</script>
-	<!--<script>
-	    $(document).ready(function() {
-
-			$('#add').click( function() {
-				var id = $(this).data('id');
-				var url = "{{url('add')}}";
-
-				$.ajaxSetup({
-					headers: {
-					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-					}
-				});
-
-				$.ajax({
-					type: "POST",
-					url: url,
-					data: { id: id },
-					success: function (data) {
-					console.log(data);
-
-					},
-					error: function (data) {
-					console.log('Error:', data);
-					}
-				});
-			});
-		});
-	</script>-->
    </body>
 </html>

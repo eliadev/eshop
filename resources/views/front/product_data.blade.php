@@ -40,7 +40,7 @@
 					<input type="hidden" value="{{ $product->getFirstMediaUrl('product') }}" id="image" name="image" />
 					
 					<div class="product-btn">
-						<button class="buttons parallelogram addcart" data-id="{{ $product->id }}" id="add" type="submit">
+						<button class="buttons parallelogram addcart" data-id="{{ $product->id }}" type="submit">
 							<i class="ion-bag"></i>Add to cart
 						</button>
 					</div>
