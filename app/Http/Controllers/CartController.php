@@ -8,12 +8,7 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function shop()
-    {
-        $products = Product::all();
-        return view('front.products', ['products' => $products]);
-    }
-
+	
     public function index()  
 	{
         $cartCollection = Cart::getContent();
@@ -30,6 +25,12 @@ class CartController extends Controller
             'image' => $request->image,
             'slug' => $request->slug
         ));
+		
+		//echo "add succ";
+		/*
+		if ($request->ajax()) {	
+			return view('front.product_data', compact('products'));
+		}*/
 		
         return redirect()->route('cart.index')->with('success_msg', 'Item is Added to Cart!');
     }

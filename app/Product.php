@@ -38,6 +38,11 @@ class Product extends Model implements HasMedia
         return $this->belongsToMany('App\Tag');
     }
 	
+	public function productAttributes()
+    {
+        return $this->hasMany('App\ProductAttribute');
+    }
+	
 	public function getTagListAttribute()
     {
         $tags = $this->tags->pluck('name')->toArray();

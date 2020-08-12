@@ -25,7 +25,7 @@
 	</li>
 	<li class="checkout-btn">
 		<a class="mb-10" href="{{ route('cart.index') }}">cart</a>
-		<a href="#">checkout</a>
+		<a href="{{ route('checkout.index') }}">checkout</a>
 	</li>
 @else
     <li class="list-group-item">Your Cart is Empty</li>

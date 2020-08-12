@@ -38,6 +38,11 @@ Route::post('/update', 'CartController@update')->name('cart.update');
 Route::post('/remove', 'CartController@remove')->name('cart.remove');
 Route::post('/clear', 'CartController@clear')->name('cart.clear');
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
+    Route::post('/checkout/order', 'CheckoutController@placeOrder')->name('checkout.place.order');
+});
+
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
 	Route::get('/', 'HomeController@index')->name('home');
 	Route::resource('users', 'UserController');
@@ -45,6 +50,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->gr
 	Route::resource('countries', 'CountryController');
 	Route::resource('states', 'StateController');
 	Route::resource('cities', 'CityController');
+	Route::resource('attributes', 'AttributeController');
 	Route::resource('categories', 'CategoryController');
 	Route::resource('products', 'ProductController');
 	Route::post('products/media', 'ProductController@storeMedia')->name('products.storeMedia');

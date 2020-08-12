@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSkusTable extends Migration
+class CreateAttributesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,11 @@ class CreateSkusTable extends Migration
      */
     public function up()
     {
-        Schema::create('skus', function (Blueprint $table) {
+        Schema::create('attributes', function (Blueprint $table) {
             $table->id();
-			$table->string('color');
-			$table->string('size');
-			$table->string('item_number');
-			$table->string('product_code');
-			
-			$table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-			
+            $table->string('name');
+			$table->string('code')->unique();
+            $table->enum('frontend_type', ['select', 'radio']);
             $table->timestamps();
         });
     }
@@ -34,6 +29,6 @@ class CreateSkusTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skus');
+        Schema::dropIfExists('attributes');
     }
 }

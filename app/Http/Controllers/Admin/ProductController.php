@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Brand;
 use App\Product;
-use App\Sku;
 use App\Tag;
+use App\Attribute;
+use App\AttributeValue;
+use App\ProductAttribute;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -19,6 +21,8 @@ class ProductController extends Controller
     {
         $this->categories = Category::all();
 		$this->brands = Brand::all();
+		$this->attributes = Attribute::all();
+		$this->values = AttributeValue::all();
     }
 
     /**
@@ -39,7 +43,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create', ['categories' => $this->categories, 'brands' => $this->brands]);
+        return view('admin.products.create', [
+			'categories' => $this->categories,
+			'brands' => $this->brands,
+			'attributes' => $this->attributes,
+			'values' => $this->values
+		]);
     }
 
     /**
@@ -52,7 +61,7 @@ class ProductController extends Controller
     {
 		$data = $request->all();
 		$product = Product::create($data);
-		$product->skus()->createMany($data['addmore']);
+		$product->productAttributes()->createMany($data['addmore']);
 
 		if(!$request->get('published'))
             $request['published'] = 0;
@@ -108,7 +117,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit', [ 'product' => $product, 'categories' => $this->categories, 'brands' => $this->brands, 'skus' => $product->skus ]);
+        return view('admin.products.edit', [
+			'product' => $product,
+			'categories' => $this->categories,
+			'brands' => $this->brands,
+			'attributes' => $this->attributes,
+			'values' => $this->values,
+			'productAttributes' => $product->productAttributes
+		]);
     }
 
     /**
@@ -169,8 +185,8 @@ class ProductController extends Controller
 		
 		$data = $request->all();
 		$product->update($data);
-        $product->skus()->delete();
-		$product->skus()->createMany($data['addmore']);
+        $product->productAttributes()->delete();
+		$product->productAttributes()->createMany($data['addmore']);
 		
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();

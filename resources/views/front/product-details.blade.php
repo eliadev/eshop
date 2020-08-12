@@ -27,6 +27,9 @@
                                 <div class="col-lg-5">
                                     <div class="product-large-slider mb-20 slider-arrow-style slider-arrow-style__style-2">
 									@foreach($product->getMedia('gallery') as $media )
+										<div class="pro-large-img img-zoom" id="img1">
+                                            <img src="{{ $product->getFirstMediaUrl('product') }}" alt="" />
+                                        </div>
                                         <div class="pro-large-img img-zoom" id="img1">
                                             <img src="{!! url($media->getUrl()) !!}" alt="" />
                                         </div>
@@ -34,6 +37,7 @@
                                     </div>
                                     <div class="pro-nav slick-padding2 slider-arrow-style slider-arrow-style__style-2">
 									@foreach($product->getMedia('gallery') as $media )
+                                        <div class="pro-nav-thumb"><img src="{{ $product->getFirstMediaUrl('product') }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img src="{!! url($media->getUrl()) !!}" alt="" /></div>
 									@endforeach
                                     </div>
@@ -91,18 +95,18 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>#</td>
-                                                            <td>Color</td>
-                                                            <td>Size</td>
-                                                            <td>Item Number</td>
-                                                            <td>Product Code</td>
+                                                            <th>Attribute</th>
+															<th>Value</th>
+															<th>Quantity</th>
+															<th>Price</th>
                                                         </tr>
-														@foreach($product->skus as $key => $sku)
+														@foreach($product->productAttributes as $key => $productAttribute)
                                                         <tr>
                                                             <td>{{ $key }}</td>
-                                                            <td>{{ $sku->color }}</td>
-                                                            <td>{{ $sku->size }}</td>
-                                                            <td>{{ $sku->item_number }}</td>
-                                                            <td>{{ $sku->product_code }}</td>
+                                                            <td>{{ $productAttribute->attribute->name }}</td>
+                                                            <td>{{ $productAttribute->value }}</td>
+                                                            <td>{{ $productAttribute->quantity }}</td>
+                                                            <td>{{ $productAttribute->price }}</td>
                                                         </tr>
 														@endforeach
                                                     </tbody>

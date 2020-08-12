@@ -629,11 +629,11 @@
 		}, 1000);
 	});
 
-	$('.product-btn button').on('click', function (e) {
+	/*$('.product-btn button').on('click', function (e) {
 		e.preventDefault();
 		let formData = $(this).closest('form').serialize();
 		// step 1 - submit form via ajax with formData
 		// step 2 - in the ajax callback, append html inside cart
-	});
+	});*/
 
 }(jQuery));

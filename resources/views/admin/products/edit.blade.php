@@ -139,19 +139,41 @@
 										<table class="table table-borderd">
 											<thead>
 												<tr>
-													<th>Color</th>
-													<th>Size</th>
-													<th>Item Number</th>
-													<th>Product Code</th>
+													<th>Attribute</th>
+													<th>Value</th>
+													<th>Quantity</th>
+													<th>Price</th>
 													<th><span class="btn btn-success addRow">+</span></th>
 												</tr>
 											</thead>
-											@foreach($skus as $key => $sku)
+											@foreach($productAttributes as $key => $productAttribute)
 												<tr>
-													<td><input type="text" name="addmore[{{ $key }}][color]" value="{{$sku->color}}" class="form-control"></td>
-													<td><input type="text" name="addmore[{{ $key }}][size]" value="{{$sku->size}}" class="form-control"></td>
-													<td><input type="text" name="addmore[{{ $key }}][item_number]" value="{{$sku->item_number}}" class="form-control"></td>
-													<td><input type="text" name="addmore[{{ $key }}][product_code]" value="{{$sku->product_code}}" class="form-control"></td>
+													<td>
+														<select class="form-control" name="addmore[0][attribute_id]">
+															<option disabled selected hidden>Select Attribute</option>
+															@foreach($attributes as $attribute)
+															<option value="{{$attribute->id}}"	
+																@if($attribute->id == $productAttribute->attribute_id)
+																selected
+																@endif
+																>{{ $attribute->name }}</option>
+															@endforeach
+														</select>
+													</td>
+													<td>
+														<select class="form-control" name="addmore[0][value]">
+															<option disabled selected hidden>Select Value</option>
+															@foreach($values as $value)
+															<option value="{{$value->id}}"	
+																@if($value->id == $productAttribute->value)
+																selected
+																@endif
+																>{{ $value->value }}</option>
+															@endforeach
+														</select>
+													</td>
+													<td><input type="text" name="addmore[{{ $key }}][quantity]" value="{{$productAttribute->quantity}}" class="form-control"></td>
+													<td><input type="text" name="addmore[{{ $key }}][price]" value="{{$productAttribute->price}}" class="form-control"></td>
 													<td><span class="btn btn-danger remove">X</span></td>
 												</tr>
 											@endforeach
@@ -185,7 +207,7 @@
 			</script>
 			<script type="text/javascript">
 			$(document).ready(function(){
-				var i = {{ count($skus) - 1 }}; // length of table rows
+				var i = {{ count($productAttributes) - 1 }}; // length of table rows
 				$('.addRow').on('click', function() {
 					addRow();
 				});
@@ -194,10 +216,10 @@
 					
 					++i;
 					var tr = '<tr>' +
-						'<td><input type="text" name="addmore['+i+'][color]" class="form-control"></td>' +
-						'<td><input type="text" name="addmore['+i+'][size]" class="form-control"></td>' +
-						'<td><input type="text" name="addmore['+i+'][item_number]" class="form-control"></td>'+
-						'<td><input type="text" name="addmore['+i+'][product_code]" class="form-control"></td>'+
+						'<td><select class="form-control" name="addmore['+i+'][attribute_id]"><option disabled selected hidden>Select Attribute</option>@foreach($attributes as $attribute)<option value="{{$attribute->id}}">{{$attribute->name}}</option>@endforeach</select>' +
+						'<td><select class="form-control" name="addmore['+i+'][value]"><option disabled selected hidden>Select Value</option>@foreach($values as $value)<option value="{{$value->id}}">{{$value->value}}</option>@endforeach</select>' +
+						'<td><input type="text" name="addmore['+i+'][quantity]" class="form-control"></td>' +
+						'<td><input type="text" name="addmore['+i+'][price]" class="form-control"></td>'+
 						'<td><span class="btn btn-danger remove">X</span></td>' +
 						'</tr>';
 					$('tbody').append(tr);

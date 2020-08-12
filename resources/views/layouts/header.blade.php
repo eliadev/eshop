@@ -3,6 +3,7 @@
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="csrf-token" content="{{ csrf_token() }}">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <title>Right Left</title>
       <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -278,5 +279,60 @@
 		  refreshHash();
 		}
 	</script>
+	<script>
+		$(document).ready(function () {
+			$('#add').on('click', function (e) {
+				event.preventDefault();
+				let formData = $(this).closest('form').serialize();
+				$("#add").prop("disabled", true);
+		 
+				$.ajax({
+					type: "POST",
+					url: "{{url('add')}}",
+					processData: false,
+					contentType: false,
+					cache: false,
+					success: function (data) {
+						$("#output").text(data);
+						console.log("SUCCESS : ", data);
+						$("#add").prop("disabled", false);
+					},
+					error: function (e) {
+						$("#output").text(e.responseText);
+						console.log("ERROR : ", e);
+						$("#add").prop("disabled", false);
+					}
+				});
+			});
+		});
+	</script>
+	<!--<script>
+	    $(document).ready(function() {
+
+			$('#add').click( function() {
+				var id = $(this).data('id');
+				var url = "{{url('add')}}";
+
+				$.ajaxSetup({
+					headers: {
+					'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+
+				$.ajax({
+					type: "POST",
+					url: url,
+					data: { id: id },
+					success: function (data) {
+					console.log(data);
+
+					},
+					error: function (data) {
+					console.log('Error:', data);
+					}
+				});
+			});
+		});
+	</script>-->
    </body>
 </html>

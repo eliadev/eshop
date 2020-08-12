@@ -12,7 +12,7 @@
 									<li class="breadcrumb-item active">Create Product</li>
 								</ol>
 							</div>
-							<h4 class="page-title">Add / Edit Real Estate</h4>
+							<h4 class="page-title">Add / Edit Product</h4>
 						</div>
 					</div>
 				</div>     
@@ -122,19 +122,33 @@
 										<table class="table table-borderd">
 											<thead>
 												<tr>
-													<th>Color</th>
-													<th>Size</th>
-													<th>Item Number</th>
-													<th>Product Code</th>
+													<th>Attribute</th>
+													<th>Value</th>
+													<th>Quantity</th>
+													<th>Price</th>
 													<th><span class="btn btn-success addRow">+</span></th>
 												</tr>
 											</thead>
 											<tbody>
 												<tr>
-													<td><input type="text" name="addmore[0][color]" class="form-control"></td>
-													<td><input type="text" name="addmore[0][size]" class="form-control"></td>
-													<td><input type="text" name="addmore[0][item_number]" class="form-control"></td>
-													<td><input type="text" name="addmore[0][product_code]" class="form-control"></td>
+													<td>
+														<select class="form-control" name="addmore[0][attribute_id]">
+																<option disabled selected hidden>Select Attribute</option>
+															@foreach($attributes as $attribute)
+																<option value="{{$attribute->id}}">{{$attribute->name}}</option>
+															@endforeach
+														</select>
+													</td>
+													<td>
+														<select class="form-control" name="addmore[0][value]">
+																<option disabled selected hidden>Select Value</option>
+															@foreach($values as $value)
+																<option value="{{$value->id}}">{{$value->value}}</option>
+															@endforeach
+														</select>
+													</td>
+													<td><input type="text" name="addmore[0][quantity]" class="form-control"></td>
+													<td><input type="text" name="addmore[0][price]" class="form-control"></td>
 													<td><span class="btn btn-danger remove">X</span></td>
 												</tr>
 											</tbody>
@@ -176,10 +190,10 @@
 					
 					++i;
 					var tr = '<tr>' +
-						'<td><input type="text" name="addmore['+i+'][color]" class="form-control"></td>' +
-						'<td><input type="text" name="addmore['+i+'][size]" class="form-control"></td>' +
-						'<td><input type="text" name="addmore['+i+'][item_number]" class="form-control"></td>'+
-						'<td><input type="text" name="addmore['+i+'][product_code]" class="form-control"></td>'+
+						'<td><select class="form-control" name="addmore['+i+'][attribute_id]"><option disabled selected hidden>Select Attribute</option>@foreach($attributes as $attribute)<option value="{{$attribute->id}}">{{$attribute->name}}</option>@endforeach</select>' +
+						'<td><select class="form-control" name="addmore['+i+'][value]"><option disabled selected hidden>Select Value</option>@foreach($values as $value)<option value="{{$value->id}}">{{$value->value}}</option>@endforeach</select>' +
+						'<td><input type="text" name="addmore['+i+'][quantity]" class="form-control"></td>' +
+						'<td><input type="text" name="addmore['+i+'][price]" class="form-control"></td>'+
 						'<td><span class="btn btn-danger remove">X</span></td>' +
 						'</tr>';
 					$('tbody').append(tr);
