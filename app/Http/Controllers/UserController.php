@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App;
 use Auth;
 use App\User;
+use App\Address;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class UserController extends Controller
         }
 		
 		$user = Auth::user();
-    	return view('front.account', ['user' => $user ]);
+		$addresses = Address::all();
+    	return view('front.account', ['user' => $user, 'addresses' => $addresses ]);
     }
 	
 	public function update(Request $request)
@@ -46,4 +48,28 @@ class UserController extends Controller
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect( route('front.profile.show') );
 	}
+	
+	public function storeAddress(Request $request)
+	{
+		$this->validate($request, [
+				'fname' => 'required',
+				'lname' => 'required',
+				'phone' => 'required',
+				'address1' => 'required',
+				'address2' => 'required',
+				'user_id' => 'required',
+		]);
+
+		Address::create([
+				'fname' => $request->fname,
+				'lname' => $request->lname,
+				'phone' => $request->phone,
+				'address1' => $request->address1,
+				'address2' => $request->address2,
+				'user_id' => $request->user_id,
+		]);
+		
+		session()->flash('message', 'Your Address has been added successfully');
+        return redirect( route('front.profile.show') );
+    }
 }

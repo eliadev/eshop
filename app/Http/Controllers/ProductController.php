@@ -6,7 +6,7 @@ use DB;
 use App;
 use Auth;
 use App\tag;
-use App\Sku;
+use App\ProductAttribute;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
     	//DB::connection()->enableQueryLog();
 		$categories = Category::all();
-		$product = Product::with(['skus', 'tags'])->find($id);
+		$product = Product::with(['productAttributes', 'tags'])->find($id);
 
 		$relatedProducts = Product::whereHas('tags', function ($q) use ($product) {
 			return $q->whereIn('name', $product->tags->pluck('name')); 

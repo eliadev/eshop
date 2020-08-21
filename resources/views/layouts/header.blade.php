@@ -40,54 +40,54 @@
                      </div>
                   </div>
                   <div class="col-lg-3 col-md-6 col-6 ml-auto">
-                     <div class="header-setting-option">
-                        <div class="search-wrap">
-                           <button type="submit" class="search-trigger"><i class="ion-ios-search-strong"></i></button>
-                        </div>
-                        <div class="header-mini-cart">
-                           <div class="mini-cart-btn">
-                              <i class="ion-bag"></i>
-                              <span class="cart-notification">{{ \Cart::getTotalQuantity() }}</span>
-                           </div>
-                           <ul class="cart-list">
-								@include('partials.cart-drop')
-                           </ul>
-                        </div>
-						@guest
-						<div class="settings-top">
-                           <a href="{{ route('front.login') }}">
-                              <i class="fa fa-user"></i>Login
-                           </a>
-                        </div>
-						@endguest
-						@auth
-                        <div class="settings-top">
-                           <div class="settings-btn">
-                              <i class="ion-android-settings"></i>
-                           </div>
-                           <ul class="settings-list">
-                              <li>
-                                 <i class="fa fa-user"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
-                                 <ul>
-                                    <li><a href="{{ route('front.profile.show') }}">My Account</a></li>
-                                    <li><a href="{{ route('logout') }}"onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}</a>
-									<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+						<div class="header-setting-option">
+							<div class="search-wrap">
+								<button type="submit" class="search-trigger"><i class="ion-ios-search-strong"></i></button>
+							</div>
+							<div class="header-mini-cart">
+								<div class="mini-cart-btn">
+									<i class="ion-bag"></i>
+									<span class="cart-notification">{{ \Cart::getTotalQuantity() }}</span>
+								</div>
+								<ul class="cart-list">
+									@include('partials.cart-drop')
+								</ul>
+							</div>
+							@guest
+							<div class="settings-top">
+								<a href="{{ route('front.login') }}">
+									<i class="fa fa-user"></i>Login
+								</a>
+							</div>
+							@endguest
+							@auth
+							<div class="settings-top">
+								<div class="settings-btn">
+									<i class="ion-android-settings"></i>
+								</div>
+								<ul class="settings-list">
+									<li>
+										<i class="fa fa-user"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+										<ul>
+											<li><a href="{{ route('front.profile.show') }}">My Account</a></li>
+											<li><a href="{{ route('logout') }}"onclick="event.preventDefault();
+															 document.getElementById('logout-form').submit();">
+												{{ __('Logout') }}</a>
+											<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+												@csrf
+											</form>
+											</li>
+										</ul>
 									</li>
-                                 </ul>
-                              </li>
-                           </ul>
-                        </div>
+							   </ul>
+							</div>
 						@endauth
-                     </div>
-                  </div>
-                  <div class="col-12 d-block d-lg-none">
-                     <div class="mobile-menu"></div>
-                  </div>
-               </div>
+						</div>
+					</div>
+					<div class="col-12 d-block d-lg-none">
+						<div class="mobile-menu"></div>
+					</div>
+				</div>
             </div>
          </div>
          <div class="box-search-content search_active block-bg close__top">
@@ -103,9 +103,9 @@
                <span>close</span>
             </div>
          </div>
-      </header>   
+      </header>
 	@yield('content')
-	
+	<div id="pop"></div>
 	<footer>
          <div class="newsletter-area bg-gray pt-64 pb-64 pt-sm-56 pb-sm-58">
             <div class="container">
@@ -288,37 +288,40 @@
 
 		$(document).ready(function () {
 			$('.addcart').on('click', function (e) {
-            event.preventDefault();
+				event.preventDefault();
 
-            let btn = $(this);
+				let btn = $(this);
 				let formData = $(this).closest('form').serialize();
-				btn.prop("disabled", true);
-		       window.console.log(formData);
+				/*btn.prop("disabled", true);*/
+				window.console.log(formData);
 
-            $.post("add", formData, function(response, status) {
-                  $("#output").text(response);
+           /* $.post("add", formData, function(response, status) {
+                  $("output").text(response);
                   console.log("SUCCESS : ", response);
                   btn.prop("disabled", false);
-            });
-				
-            // $.ajax({
-				// 	type: "POST",
-				// 	url: "{{url('add')}}",
-    //            data: formData,
-				// 	processData: false,
-				// 	contentType: false,
-				// 	cache: false,
-				// 	success: function (data) {
-				// 		$("#output").text(data);
-				// 		console.log("SUCCESS : ", data);
-				// 		btn.prop("disabled", false);
-				// 	},
-				// 	error: function (e) {
-				// 		$("#output").text(e.responseText);
-				// 		console.log("ERROR : ", e);
-				// 		btn.prop("disabled", false);
-				// 	}
-				// });
+            });*/
+
+				$.ajax({
+				 	type: "POST",
+				 	url: "{{url('add')}}",
+					data: formData,
+
+				 	/*success: function (data) {
+				 		$("#output").text(data);
+				 		console.log("SUCCESS : ", data);
+				 		btn.prop("disabled", false);
+				 	},*/
+					success:function(data){
+						$('#mycart').html(data);
+						alert("Product has been added to cart");
+						document.getElementById("pop").innerHTML = '<div class="alert-pop"><span class="quick-alert">PRODUCT HAVE BEEN ADDED TO YOUR CART</span> &nbsp; &nbsp;<a href="#" class="button primary">View Cart</a><a href="#" class="button primary">&nbsp;&nbsp;Go To Checkout</a></div>';
+					},
+				 	error: function (e) {
+				 		$("#output").text(e.responseText);
+				 		console.log("ERROR : ", e);
+				 		btn.prop("disabled", false);
+				 	}
+				});
 			});
 		});
 	</script>

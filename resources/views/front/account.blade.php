@@ -180,13 +180,123 @@
                                         <div class="tab-pane fade" id="address-edit">
                                             <div class="myaccount-content">
                                                 <h3>Billing Address</h3>
-                                                <address>
-                                                    <p><strong>Alex Tuntuni</strong></p>
-                                                    <p>1355 Market St, Suite 900 <br>
-                                                        San Francisco, CA 94103</p>
-                                                    <p>Mobile: (123) 456-7890</p>
-                                                </address>
-                                                <a href="#" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a>
+												@if(session()->has('message'))
+													<div class="alert alert-success">
+														{{session()->get('message')}}
+													</div>
+												@endif
+												@if($errors->all())
+													<div class="alert alert-danger">
+														<ul>
+														@foreach($errors->all() as $error)
+															<li>{{$error}}</li>			
+														@endforeach
+														</ul>
+													</div>
+												@endif
+												<div class="container">
+													<div class="row">
+													@foreach($addresses as $address)
+														<div class="col-md-4">
+															<address>
+																<p><strong>{{ $address->fname }} {{ $address->lname }}</strong></p>
+																<p>{{ $address->address1 }}<br>
+																	{{ $address->address2 }}</p>
+																<p>Mobile: {{ $address->phone }}</p>
+															</address>
+															<a href="#" class="check-btn sqr-btn "><i class="fa fa-edit"></i> Edit Address</a>
+														</div>
+													@endforeach
+													</div>
+												</div>
+												<br>
+												<br>
+												<form method="POST" action="{{ route('front.address') }}">
+													   @csrf
+													   <input type="hidden" name="user_id" value="{{ $user->id }}" placeholder="First Name" />
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="single-input-item">
+                                                                    <label for="fname" class="required">First Name</label>
+                                                                    <input type="text" id="fname" name="fname" placeholder="First Name" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="single-input-item">
+                                                                    <label for="lname" class="required">Last Name</label>
+                                                                    <input type="text" id="lname" name="lname" placeholder="Last Name" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+														<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="single-input-item">
+                                                                    <label for="email" class="required">Email</label>
+                                                                    <input type="text" id="email" name="email" placeholder="Email" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="single-input-item">
+                                                                    <label for="phone" class="required">Phone Number</label>
+                                                                    <input type="text" id="phone" name="phone" placeholder="Phone Number" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+														<div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="single-input-item">
+                                                                    <label for="country" class="required">Country</label>
+                                                                    <input type="text" id="country" name="country" placeholder="Country" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="single-input-item">
+                                                                    <label for="state" class="required">State</label>
+                                                                    <input type="text" id="state" name="state" placeholder="State" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+														<div class="row">
+															<div class="col-lg-6">
+																<div class="single-input-item">
+																	<label for="city" class="required">City</label>
+																	<input type="text" id="city" name="city" placeholder="City" />
+																</div>
+															</div>
+															<div class="col-lg-6">
+																<div class="single-input-item">
+																	<label for="postcode" class="required">Post Code</label>
+																	<input type="text" id="postcode" name="postcode" placeholder="Post Code" />
+																</div>
+															</div>
+                                                        </div>
+														<div class="row">
+															<div class="col-lg-6">
+																<div class="single-input-item">
+																	<label for="address1" class="required">Address 1</label>
+																	<input type="text" id="address1" name="address1" placeholder="Address1" />
+																</div>
+															</div>
+															<div class="col-lg-6">
+																<div class="single-input-item">
+																	<label for="address2" class="required">Address 2</label>
+																	<input type="text" id="address2" name="address2" placeholder="Address 2" />
+																</div>
+															</div>
+                                                        </div>
+														<div class="row">
+															<div class="col-lg-12">
+																<div class="single-input-item">
+																	<label for="description" class="required">More Details</label>
+																	<textarea name="description" id="description" cols="30" rows="3" placeholder="More Details"></textarea>
+																</div>
+															</div>
+                                                        </div>
+														
+                                                        <div class="single-input-item">
+                                                            <button type="submit" class="check-btn sqr-btn">Save Changes</button>
+                                                        </div>
+                                                    </form>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="account-info">

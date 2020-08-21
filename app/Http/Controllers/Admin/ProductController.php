@@ -187,7 +187,7 @@ class ProductController extends Controller
 		$product->update($data);
         $product->productAttributes()->delete();
 		$product->productAttributes()->createMany($data['addmore']);
-		
+
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();
     }

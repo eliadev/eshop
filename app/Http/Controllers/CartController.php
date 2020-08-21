@@ -31,7 +31,7 @@ class CartController extends Controller
             return response()->json('cart item added');
 		}
 		
-        return redirect()->route('cart.index')->with('success_msg', 'Item is Added to Cart!');
+        //return redirect()->route('cart.index')->with('success_msg', 'Item is Added to Cart!');
     }
 	
 	public function remove(Request $request)

@@ -74,7 +74,7 @@
 										<td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="assets/img/product/product-1.jpg" alt="{{ $item->name }}"/></a></td>
 										<td class="pro-title"><a href="#">{{ $item->name }}</a></td>
 										<td class="pro-price"><span>${{ $item->price }}</span></td>
-										<td class="pro-quantity"><!--<div class="pro-qty"><input type="text" value="1"></div>--></td>
+										<td class="pro-quantity">{{ $item->quantity }}<!--<div class="pro-qty"><input type="text" value="1"></div>--></td>
 										<td class="pro-subtotal"><span>${{ \Cart::get($item->id)->getPriceSum() }}</span></td>
 										<td class="pro-remove">
 											<form action="{{ route('cart.update') }}" method="POST">
@@ -130,7 +130,7 @@
                                     </table>
                                 </div>
                             </div>
-                            <a href="checkout.html" class="sqr-btn d-block">Proceed To Checkout</a>
+                            <a href="{{ route('checkout.index') }}" class="sqr-btn d-block">Proceed To Checkout</a>
                         </div>
                     </div>
                 </div>

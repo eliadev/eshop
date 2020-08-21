@@ -17,7 +17,7 @@ class Product extends Model implements HasMedia
 	protected $table = "products";
 	protected $fillable = ['name', 'description', 'price', 'reference', 'featured', 'published', 'brand_id'];
     
-    protected $with = ['skus'];
+    //protected $with = ['skus'];
     protected $appends = ['slug'];
 
     public function brand() {
@@ -26,11 +26,6 @@ class Product extends Model implements HasMedia
 	
 	public function categories() {
         return $this->belongsToMany('App\Category');
-    }
-	
-	public function skus()
-    {
-        return $this->hasMany('App\Sku');
     }
 	
 	public function tags()

@@ -27,6 +27,7 @@ Route::post('/guest/doLogin', 'HomeController@doLogin')->name('front.doLogin');
 
 Route::get('/profile', 'UserController@show')->name('front.profile.show');
 Route::post('/update-profile', 'UserController@update')->name('front.profile.update');
+Route::post('/address', 'UserController@storeAddress')->name('front.address');
 
 Route::get('products/', 'ProductController@index')->name('front.products');
 Route::get('/product/{id}/{slug}', 'ProductController@show')->name('front.product.show');
@@ -38,10 +39,10 @@ Route::post('/update', 'CartController@update')->name('cart.update');
 Route::post('/remove', 'CartController@remove')->name('cart.remove');
 Route::post('/clear', 'CartController@clear')->name('cart.clear');
 
-Route::group(['middleware' => ['auth']], function () {
+//Route::group(['middleware' => ['auth']], function () {
     Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
     Route::post('/checkout/order', 'CheckoutController@placeOrder')->name('checkout.place.order');
-});
+//});
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->group(function () {
 	Route::get('/', 'HomeController@index')->name('home');

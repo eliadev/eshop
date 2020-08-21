@@ -190,15 +190,14 @@
 					
 					++i;
 					var tr = '<tr>' +
-						'<td><select class="form-control" name="addmore['+i+'][attribute_id]"><option disabled selected hidden>Select Attribute</option>@foreach($attributes as $attribute)<option value="{{$attribute->id}}">{{$attribute->name}}</option>@endforeach</select>' +
-						'<td><select class="form-control" name="addmore['+i+'][value]"><option disabled selected hidden>Select Value</option>@foreach($values as $value)<option value="{{$value->id}}">{{$value->value}}</option>@endforeach</select>' +
-						'<td><input type="text" name="addmore['+i+'][quantity]" class="form-control"></td>' +
-						'<td><input type="text" name="addmore['+i+'][price]" class="form-control"></td>'+
-						'<td><span class="btn btn-danger remove">X</span></td>' +
-						'</tr>';
+							'<td><select class="form-control" name="addmore['+i+'][attribute_id]"><option disabled selected hidden>Select Attribute</option>@foreach($attributes as $attribute)<option value="{{$attribute->id}}">{{$attribute->name}}</option>@endforeach</select>' +
+							'<td><select class="form-control" name="addmore['+i+'][value]"><option disabled selected hidden>Select Value</option>@foreach($values as $value)<option value="{{$value->id}}">{{$value->value}}</option>@endforeach</select>' +
+							'<td><input type="text" name="addmore['+i+'][quantity]" class="form-control"></td>' +
+							'<td><input type="text" name="addmore['+i+'][price]" class="form-control"></td>'+
+							'<td><span class="btn btn-danger remove">X</span></td>' +
+							'</tr>';
 					$('tbody').append(tr);
 				}; 
-			 
 			 });
 
 			$(document).on('click', '.remove', function() {

@@ -53,6 +53,31 @@ button:focus {
     transition: all 0.4s ease-out;
 }
 
+#pop {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+	z-index: 99999;
+}
+
+.alert-pop{
+	padding: 15px;
+	z-index:99999;
+    background-color: #014090;
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    animation: fadeIn 7s;
+    opacity: 0;
+}
+
+span.quick-alert {
+    font-size: 16px;
+    text-align: center;
+}
+
 .form-control:focus {
     border-color: #fedc19;
     -webkit-box-shadow: none;

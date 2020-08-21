@@ -38,11 +38,10 @@
 					<input type="hidden" value="1" id="quantity" name="quantity">
 					<input type="hidden" value="{{ $product->slug }}" id="slug" name="slug" />
 					<input type="hidden" value="{{ $product->getFirstMediaUrl('product') }}" id="image" name="image" />
-					
+
 					<div class="product-btn">
-						<button class="buttons parallelogram addcart" data-id="{{ $product->id }}" type="submit">
-							<i class="ion-bag"></i>Add to cart
-						</button>
+						<button class="buttons parallelogram addcart" id="add_{{ $product->id }}" data-id="{{ $product->id }}" type="submit"><i class="ion-bag"></i>Add to cart</button>
+						<button style="display:none" class="buttons parallelogram addcart" id="added_{{ $product->id }}" data-id="{{ $product->id }}" type="submit"><i class="ion-bag"></i>Added</button>
 					</div>
 				</form>
 				
