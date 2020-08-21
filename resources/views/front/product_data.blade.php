@@ -41,7 +41,7 @@
 
 					<div class="product-btn">
 						<button class="buttons parallelogram addcart" id="add_{{ $product->id }}" data-id="{{ $product->id }}" type="submit"><i class="ion-bag"></i>Add to cart</button>
-						<button style="display:none" class="buttons parallelogram addcart" id="added_{{ $product->id }}" data-id="{{ $product->id }}" type="submit"><i class="ion-bag"></i>Added</button>
+						{{-- <button style="display:none" class="buttons parallelogram addcart" id="added_{{ $product->id }}" data-id="{{ $product->id }}" type="submit"><i class="ion-bag"></i>Added</button> --}}
 					</div>
 				</form>
 				

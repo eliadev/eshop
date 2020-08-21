@@ -17,18 +17,20 @@ class CartController extends Controller
 	
 	public function add(Request $request)
 	{  
-        Cart::add(array(
+        $arr = [
             'id' => $request->id,
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity,
             'image' => $request->image,
             'slug' => $request->slug
-        ));
+        ];
+        
+        Cart::add($arr);
 		
 		if ($request->ajax()) {	
 			//return view('front.product_data', compact('products'));
-            return response()->json('cart item added');
+            return response()->json($arr);
 		}
 		
         //return redirect()->route('cart.index')->with('success_msg', 'Item is Added to Cart!');

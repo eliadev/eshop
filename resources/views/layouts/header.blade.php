@@ -313,8 +313,14 @@
 				 	},*/
 					success:function(data){
 						$('#mycart').html(data);
-						alert("Product has been added to cart");
-						document.getElementById("pop").innerHTML = '<div class="alert-pop"><span class="quick-alert">PRODUCT HAVE BEEN ADDED TO YOUR CART</span> &nbsp; &nbsp;<a href="#" class="button primary">View Cart</a><a href="#" class="button primary">&nbsp;&nbsp;Go To Checkout</a></div>';
+                  window.console.log(data);
+                  $('ul.cart-list').append('<li>' + data.name + '</li>');
+                  
+                  // event binding to remove items
+                  // $("li .fa.fa-times").click('')
+						// $(".cart-notification").text( parseInt($(".cart-notification").text()) + 1);
+						
+                  document.getElementById("pop").innerHTML = '<div class="alert-pop"><span class="quick-alert">PRODUCT HAVE BEEN ADDED TO YOUR CART</span> &nbsp; &nbsp;<a href="#" class="button primary">View Cart</a><a href="#" class="button primary">&nbsp;&nbsp;Go To Checkout</a></div>';
 					},
 				 	error: function (e) {
 				 		$("#output").text(e.responseText);

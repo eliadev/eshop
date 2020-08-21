@@ -14,6 +14,7 @@ class CheckoutController extends Controller
 {
     public function index()
     {
+        // @TODO: refactor to CheckoutMiddleware including these 2 checks
 		if(!Auth::check())
         {
             return redirect()->route('front.login')->with('status', 'Login before checkout!');
