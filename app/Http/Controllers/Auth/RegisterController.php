@@ -82,7 +82,7 @@ class RegisterController extends Controller
         $user->verification_code = sha1(time());
         $user->save();
 
-        if($user != null){
+        if($user){
 			Mail::to($request->email)->send(new SignupEmail($user));
             return redirect()->back()->with(session()->flash('alert-success', 'Your account has been created. Please check email for verification link.'));
         }
@@ -92,9 +92,10 @@ class RegisterController extends Controller
 
 	public function verifyUser(Request $request)
 	{
-        $verification_code = \Illuminate\Support\Facades\Request::get('code');
+        $verification_code = $request->code;
         $user = User::where(['verification_code' => $verification_code])->first();
-        if($user != null){
+        
+        if($user){
             $user->is_verified = 1;
             $user->save();
             return redirect()->route('front.login')->with(session()->flash('alert-success', 'Your account is verified. Please login!'));

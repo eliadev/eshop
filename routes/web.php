@@ -27,6 +27,7 @@ Route::get('/verify','Auth\RegisterController@verifyUser')->name('verify.user');
 Route::get('/guest/login', 'HomeController@login')->name('front.login');
 Route::post('/guest/doLogin', 'HomeController@doLogin')->name('front.doLogin');
 
+
 //User Account
 Route::get('/profile', 'UserController@show')->name('front.profile.show');
 Route::post('/update-profile', 'UserController@update')->name('front.profile.update');
@@ -44,7 +45,7 @@ Route::post('/remove', 'CartController@remove')->name('cart.remove');
 Route::post('/clear', 'CartController@clear')->name('cart.clear');
 
 //Checkout & Order
-Route::middleware(['auth' => 'verified'])->group(function () {
+Route::middleware(['auth', 'is_verified'])->group(function () {
 	Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
 	Route::post('order', 'OrderController@index')->name('order.index');
 	Route::get('order/{order}', 'OrderController@successful')->name('front.successful');
