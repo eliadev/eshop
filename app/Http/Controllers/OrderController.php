@@ -18,6 +18,15 @@ use App\Mail\OrderPlaced;
 
 class OrderController extends Controller
 {
+    /*
+            - A user can have multiple addresses ( address:user_id)
+            - order can have multiple addresses (2: billing & shipping)
+            - Remove address_id from order
+            - order manyToMany addresses relation: address_order table
+            - order->addresses()
+     */
+    
+
     public function index(Request $request)
     {
 		$latestOrder = Order::orderBy('created_at','DESC')->firstOrNew();
