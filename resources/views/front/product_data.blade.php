@@ -32,19 +32,18 @@
 				</div>
 				<form action="{{ route('cart.store') }}" method="POST">
 					{{ csrf_field() }}
-					<input type="hidden" value="{{ $product->id }}" id="id" name="id">
-					<input type="hidden" value="{{ $product->name }}" id="name" name="name">
-					<input type="hidden" value="{{ $product->price }}" id="price" name="price">
-					<input type="hidden" value="1" id="quantity" name="quantity">
-					<input type="hidden" value="{{ $product->slug }}" id="slug" name="slug" />
-					<input type="hidden" value="{{ $product->getFirstMediaUrl('product') }}" id="image" name="image" />
+					<input type="hidden" value="{{ $product->id }}" name="id">
+					<input type="hidden" value="{{ $product->name }}" name="name">
+					<input type="hidden" value="{{ $product->price }}" name="price">
+					<input type="hidden" value="1" name="quantity">
+					<input type="hidden" value="{{ $product->slug }}" name="slug" />
+					<input type="hidden" value="{{ $product->getFirstMediaUrl('product') }}" name="image" />
 
 					<div class="product-btn">
-						<button class="buttons parallelogram addcart" id="add_{{ $product->id }}" data-id="{{ $product->id }}" type="submit"><i class="ion-bag"></i>Add to cart</button>
-						{{-- <button style="display:none" class="buttons parallelogram addcart" id="added_{{ $product->id }}" data-id="{{ $product->id }}" type="submit"><i class="ion-bag"></i>Added</button> --}}
+						<button class="buttons parallelogram addcart" data-id="{{ $product->id }}" type="submit"><i class="ion-bag"></i>Add to cart</button>
 					</div>
 				</form>
-				
+
 			</div>
 		</div>
 	</div>

@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         	'last_name' => 'Admin',
         	'is_superadmin' => 1,
 			'is_active' => 1,
+			'is_verified' => 1,
         	'password' => bcrypt('123456')
         ]);
     }

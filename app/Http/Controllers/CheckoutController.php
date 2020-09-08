@@ -6,8 +6,10 @@ use DB;
 use App;
 use Auth;
 use Cart;
+use App\User;
 use App\Category;
 use App\Product;
+use App\Address;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
@@ -26,12 +28,8 @@ class CheckoutController extends Controller
         }
 		
 		$user = Auth::user();
-
-		return view('front.checkout', ['user' => $user]);
-    }
-	
-    public function placeOrder(Request $request)
-    {
-        
+		$addresses = $user->addresses()->get();
+		
+		return view('front.checkout', ['user' => $user, 'addresses' => $addresses ]);
     }
 }

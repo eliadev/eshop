@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 class OrderItem extends Model
 {
     protected $table = 'order_items';
-    public $timestamps = false;
 
     protected $fillable = ['order_id', 'product_id', 'quantity', 'price'];
 	
@@ -14,6 +13,18 @@ class OrderItem extends Model
 	public function product()
     {
         return $this->belongsTo('App\Product');
+    }
+	
+	public function order()
+    {
+        return $this->belongsTo('App\Order');
+    }
+	
+	public function getTotalPriceAttribute()
+    {
+       $price = $this->price;
+       $quantity = $this->quantity;
+       return number_format($price * $quantity);
     }
  
 }

@@ -15,16 +15,16 @@
 							<h4 class="page-title">Add / Edit Product</h4>
 						</div>
 					</div>
-				</div>     
+				</div>
 				<div class="row">
 					<div class="col-12">
 					@if($errors->all())
 						<div class="alert alert-danger">
 							<ul>
 							@foreach($errors->all() as $error)
-								<li>{{$error}}</li>			
+								<li>{{$error}}</li>
 							@endforeach
-							</ul> 
+							</ul>
 						</div>
 					@endif
 					<form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
 								<div class="card-box">
 									<h5 class="text-uppercase bg-light p-2 mt-0 mb-3">Product Info</h5>
 									<div class="form-group mb-3">
-										<label for="categories">Categories</label>							
+										<label for="categories">Categories</label>
 										<select class="form-control" name="categories[]" multiple>
 											@foreach($categories as $category)
 											<option value="{{$category->id}}"
@@ -44,7 +44,7 @@
 										   @endforeach
 										</select>
 									</div>
-									
+
 									<div class="form-group mb-3">
 										<label for="brand_id">Brands</label>
 										<select class="form-control" name="brand_id">
@@ -54,22 +54,22 @@
 											@endforeach
 										</select>
 									</div>
-									
+
 									<div class="form-group mb-3">
 										<label for="name">Product Name</label>
 										<input type="text" id="name" name="name" class="form-control" placeholder="Product Name">
 									</div>
-									
+
 									<div class="form-group mb-3">
 										<label for="name">Price</label>
 										<input type="text" id="price" name="price" class="form-control" placeholder="Price">
 									</div>
-									
+
 									<div class="form-group mb-3">
 										<label for="name">Reference</label>
 										<input type="number" id="reference" name="reference" class="form-control" placeholder="Reference">
 									</div>
-									
+
 									<div class="form-group mb-3">
 										<label for="description">Description</label>
 										<textarea class="form-control" name="description" id="summernote-editor" rows="5" placeholder="Please enter description"></textarea>
@@ -92,7 +92,7 @@
 											<input class="tgl tgl-light" id="featured" name="featured" type="checkbox" value="1">
 											<label class="tgl-btn" for="featured"></label>
 										</div>
-									
+
 										<div class="form-group mb-3 col-md-6">
 											<label for="published">Published</label>
 											<input class="tgl tgl-light" id="published" name="published" type="checkbox" value="1">
@@ -112,8 +112,8 @@
 										<div class="needsclick dropzone" id="gallery-dropzone"></div>
 									</div>
 								</div>
-							</div> 
-						</div>	
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-12">
 								<div class="card-box">
@@ -164,12 +164,12 @@
 									<a href="{{route('products.index')}}" class="btn w-sm btn-light waves-effect">Cancel</a>
 								</div>
 							</div>
-						</div>	 
+						</div>
 					</div>
-					</form>	
+					</form>
 				</div>
 			</div>
-		</div>					
+		</div>
 @endsection
 @section('scripts')
 		<script>
@@ -187,7 +187,7 @@
 				});
 
 				function addRow() {
-					
+
 					++i;
 					var tr = '<tr>' +
 							'<td><select class="form-control" name="addmore['+i+'][attribute_id]"><option disabled selected hidden>Select Attribute</option>@foreach($attributes as $attribute)<option value="{{$attribute->id}}">{{$attribute->name}}</option>@endforeach</select>' +
@@ -197,7 +197,7 @@
 							'<td><span class="btn btn-danger remove">X</span></td>' +
 							'</tr>';
 					$('tbody').append(tr);
-				}; 
+				};
 			 });
 
 			$(document).on('click', '.remove', function() {

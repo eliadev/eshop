@@ -25,6 +25,27 @@
                         <div class="col-lg-6"> 
 							<div class="login-reg-form-wrap mt-md-100 mt-sm-58">
 								<h2>Sign up Form</h2>
+								@if($errors->all())
+									<div class="alert alert-danger">
+										<ul>
+										@foreach($errors->all() as $error)
+											<li>{{$error}}</li>         
+										@endforeach
+										</ul>
+									</div>
+								@endif		
+								@if (session('status'))
+									<div class="alert alert-danger">
+									  {{ session('status') }}
+									</div>
+								@endif 
+								<div class="flash-message">
+									@foreach (['danger', 'warning', 'success', 'info'] as $msg)
+										@if(Session::has('alert-' . $msg))
+											<p class="alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></p>
+										@endif
+									@endforeach
+								</div>
 								<form method="POST" action="{{ route('register') }}">
 									@csrf
 									<div class="single-input-item">

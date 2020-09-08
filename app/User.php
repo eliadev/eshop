@@ -25,7 +25,7 @@ class User extends Authenticatable implements HasMedia
         'first_name', 'last_name', 'email', 'position', 'phone', 'date_of_birth', 'address', 'password', 'is_superadmin', 'is_active'
     ];
 	
-	protected $appends = ['slug'];
+	protected $appends = [];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -53,6 +53,11 @@ class User extends Authenticatable implements HasMedia
     public function permissions()
     {
         return $this->belongsToMany('App\Permission');
+    }
+	
+	public function addresses()
+    {
+        return $this->hasMany('App\Address');
     }
 
     /**
@@ -97,14 +102,5 @@ class User extends Authenticatable implements HasMedia
 	public function getFullNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
-    }
-	
-	/**
-     * Slug Attribute
-     * @return [type] [description]
-     */
-    public function getSlugAttribute()
-    {
-        return Str::slug($this->name);
     }
 }

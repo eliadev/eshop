@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('position')->nullable();
             $table->boolean('is_superadmin')->default(0);
 			$table->boolean('is_active')->default(0);
+			$table->string('verification_code')->nullable();
+            $table->boolean('is_verified')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

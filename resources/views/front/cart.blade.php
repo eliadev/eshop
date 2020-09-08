@@ -104,7 +104,7 @@
                                     <input type="text" placeholder="Enter Your Coupon Code" required />
                                     <button class="sqr-btn">Apply Coupon</button>
                                 </form>
-                            </div>							
+                            </div>
                             <div class="cart-update mt-sm-16">
 								<form action="{{ route('cart.clear') }}" method="POST">
 									{{ csrf_field() }}

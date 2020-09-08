@@ -543,6 +543,10 @@
 		$(".account-create").slideToggle("100");
 	});
 
+	$("#billing_a_different").on("change", function () {
+		$(".billing_a_different").slideToggle("100");
+	});
+
 	$("#ship_to_different").on("change", function () {
 		$(".ship-to-different").slideToggle("100");
 	});
@@ -561,7 +565,7 @@
 		language: 'en',
 		callback: mailChimpResponse,
 		// ADD YOUR MAILCHIMP URL BELOW HERE!
-		url: 'https://company.us19.list-manage.com/subscribe/post?u=2f2631cacbe4767192d339ef2&amp;id=24db23e68a'
+		url: '#'
 
 	});
 

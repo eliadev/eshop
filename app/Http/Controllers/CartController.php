@@ -8,15 +8,15 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-	
-    public function index()  
+
+    public function index()
 	{
         $cartCollection = Cart::getContent();
         return view('front.cart', ['cartCollection' => $cartCollection]);
     }
-	
+
 	public function add(Request $request)
-	{  
+	{
         $arr = [
             'id' => $request->id,
             'name' => $request->name,
@@ -25,17 +25,16 @@ class CartController extends Controller
             'image' => $request->image,
             'slug' => $request->slug
         ];
-        
-        Cart::add($arr);
-		
-		if ($request->ajax()) {	
-			//return view('front.product_data', compact('products'));
+
+        Cart::add($arr)->associate('App\Product');
+
+		if ($request->ajax()) {
             return response()->json($arr);
 		}
-		
+
         //return redirect()->route('cart.index')->with('success_msg', 'Item is Added to Cart!');
     }
-	
+
 	public function remove(Request $request)
 	{
         Cart::remove($request->id);
@@ -51,10 +50,10 @@ class CartController extends Controller
                     'value' => $request->quantity
                 ),
         ));
-		
+
         return redirect()->route('cart.index')->with('success_msg', 'Cart is Updated!');
     }
-	
+
 	public function clear()
 	{
         Cart::clear();

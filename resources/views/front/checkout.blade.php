@@ -20,93 +20,86 @@
     <main>
         <div class="checkout-page-wrapper pt-100 pb-90 pt-sm-58 pb-sm-54">
             <div class="container">
+			
+				<form action="{{ route('order.index') }}" method="POST">
+				 {{ csrf_field() }}
+				<input type="hidden" name="grand_total" value="{{ \Cart::getTotal() }}"/>
+				<input type="hidden" name="item_count" value="{{ \Cart::getTotalQuantity() }}"/>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout-billing-details-wrap">
-                            <h2>Billing Details</h2>
+                            <h2>Billing Information</h2>
                             <div class="billing-form-wrap">
-                                <form action="#">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="single-input-item">
-                                                <label for="f_name" class="required">First Name</label>
-                                                <input type="text" id="f_name" value="{{ $user->first_name }}" placeholder="First Name" required />
-                                            </div>
-                                        </div>
+								<p>Select a billing address from your address book or enter a new address.</p>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="single-input-item">
+												<label for="f_name_2" class="required">First Name</label>
+												<input type="text" name="fname" placeholder="First Name"  />
+											</div>
+										</div>
 
-                                        <div class="col-md-6">
-                                            <div class="single-input-item">
-                                                <label for="l_name" class="required">Last Name</label>
-                                                <input type="text" id="l_name" value="{{ $user->first_name }}" placeholder="Last Name" required />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-input-item">
-                                        <label for="email" class="required">Email Address</label>
-                                        <input type="email" id="email" value="{{ $user->email }}" placeholder="Email Address" required />
-                                    </div>
-                                    <div class="single-input-item">
-                                        <label for="country" class="required">Country</label>
-                                        <select name="country nice-select" id="country">
-                                            <option value="Afghanistan">Afghanistan</option>
-                                            <option value="Albania">Albania</option>
-                                            <option value="Algeria">Algeria</option>
-                                            <option value="Armenia">Armenia</option>
-                                            <option value="Bangladesh">Bangladesh</option>
-                                            <option value="India">India</option>
-                                            <option value="Pakistan">Pakistan</option>
-                                            <option value="England">England</option>
-                                            <option value="London">London</option>
-                                            <option value="London">London</option>
-                                            <option value="Chaina">China</option>
-                                        </select>
-                                    </div>
+										<div class="col-md-6">
+											<div class="single-input-item">
+												<label for="l_name_2" class="required">Last Name</label>
+												<input type="text" name="lname" placeholder="Last Name"  />
+											</div>
+										</div>
+									</div>
 
-                                    <div class="single-input-item">
-                                        <label for="street-address" class="required mt-20">Street address</label>
-                                        <input type="text" id="street-address" placeholder="Street address Line 1" required />
-                                    </div>
+									<div class="single-input-item">
+										<label for="email" class="required">Email Address</label>
+										<input type="email" name="email" placeholder="Email Address"  />
+									</div>
 
-                                    <div class="single-input-item">
-                                        <input type="text"  placeholder="Street address Line 2 (Optional)" />
-                                    </div>
+									<div class="single-input-item">
+										<label for="phone">Phone</label>
+										<input type="text" name="phone" placeholder="Company Name" />
+									</div>
 
-                                    <div class="single-input-item">
-                                        <label for="town" class="required">Town / City</label>
-                                        <input type="text" id="town"  placeholder="Town / City" required />
-                                    </div>
+									<div class="single-input-item">
+										<label for="country" class="required">Country</label>
+										<select name="country">
+											<option value="Bangladesh">Bangladesh</option>
+											<option value="India">India</option>
+											<option value="Pakistan">Pakistan</option>
+											<option value="England">England</option>
+											<option value="London">London</option>
+											<option value="London">London</option>
+											<option value="Chaina">Chaina</option>
+										</select>
+									</div>
 
-                                    <div class="single-input-item">
-                                        <label for="state">State / Divition</label>
-                                        <input type="text" id="state"  placeholder="State / Divition" />
-                                    </div>
+									<div class="single-input-item">
+										<label for="city" class="required mt-20">City</label>
+										<input type="text" name="city" placeholder="City"  />
+									</div>
 
-                                    <div class="single-input-item">
-                                        <label for="postcode" class="required">Postcode / ZIP</label>
-                                        <input type="text" id="postcode"  placeholder="Postcode / ZIP" required />
-                                    </div>
+									<div class="single-input-item">
+										<label for="state">State</label>
+										<input type="text" name="state" placeholder="State" />
+									</div>
 
-                                    <div class="single-input-item">
-                                        <label for="phone">Phone</label>
-                                        <input type="text" id="phone"  placeholder="Phone" />
-                                    </div>
+									<div class="single-input-item">
+										<label for="address2" class="required">Street address</label>
+										<input type="text" name="address2" placeholder="Street address Line 1"  />
+									</div>
 
-                                    <div class="checkout-box-wrap">
-                                        <div class="single-input-item">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="create_pwd">
-                                                <label class="custom-control-label" for="create_pwd">Create an account?</label>
-                                            </div>
-                                        </div>
-                                        <div class="account-create single-form-row">
-                                            <p>Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
-                                            <div class="single-input-item">
-                                                <label for="pwd" class="required">Account Password</label>
-                                                <input type="password" id="pwd"  placeholder="Account Password" required />
-                                            </div>
-                                        </div>
-                                    </div>
+									<div class="single-input-item">
+										<input type="text"  placeholder="Street address Line 2 (Optional)" />
+									</div>
 
+									<div class="single-input-item">
+										<label for="postcode_2" class="required">Postcode / ZIP</label>
+										<input type="text" name="postcode" placeholder="Postcode / ZIP"  />
+									</div>
+									
+									<div class="single-input-item">
+										<label for="description">More Details</label>
+										<textarea name="description" id="description" cols="30" rows="3" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+									</div>
+                                    
+                                   <p>Select a shipping address from your address book or enter a new address.</p>
                                     <div class="checkout-box-wrap">
                                         <div class="single-input-item">
                                             <div class="custom-control custom-checkbox">
@@ -119,21 +112,21 @@
                                                 <div class="col-md-6">
                                                     <div class="single-input-item">
                                                         <label for="f_name_2" class="required">First Name</label>
-                                                        <input type="text" id="f_name_2" placeholder="First Name" required />
+                                                        <input type="text" id="f_name_2" placeholder="First Name"  />
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="single-input-item">
                                                         <label for="l_name_2" class="required">Last Name</label>
-                                                        <input type="text" id="l_name_2" placeholder="Last Name" required />
+                                                        <input type="text" id="l_name_2" placeholder="Last Name"  />
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="single-input-item">
                                                 <label for="email_2" class="required">Email Address</label>
-                                                <input type="email" id="email_2" placeholder="Email Address" required />
+                                                <input type="email" id="email_2" placeholder="Email Address"  />
                                             </div>
 
                                             <div class="single-input-item">
@@ -156,7 +149,7 @@
 
                                             <div class="single-input-item">
                                                 <label for="street-address_2" class="required mt-20">Street address</label>
-                                                <input type="text" id="street-address_2" placeholder="Street address Line 1" required />
+                                                <input type="text" id="street-address_2" placeholder="Street address Line 1"  />
                                             </div>
 
                                             <div class="single-input-item">
@@ -165,7 +158,7 @@
 
                                             <div class="single-input-item">
                                                 <label for="town_2" class="required">Town / City</label>
-                                                <input type="text" id="town_2"  placeholder="Town / City" required />
+                                                <input type="text" id="town_2"  placeholder="Town / City"  />
                                             </div>
 
                                             <div class="single-input-item">
@@ -175,16 +168,10 @@
 
                                             <div class="single-input-item">
                                                 <label for="postcode_2" class="required">Postcode / ZIP</label>
-                                                <input type="text" id="postcode_2"  placeholder="Postcode / ZIP" required />
+                                                <input type="text" id="postcode_2"  placeholder="Postcode / ZIP"  />
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="single-input-item">
-                                        <label for="ordernote">Order Note</label>
-                                        <textarea name="ordernote" id="ordernote" cols="30" rows="3" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -202,37 +189,31 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td><a href="single-product.html">Suscipit Vestibulum <strong> × 1</strong></a></td>
-                                                <td>$165.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="single-product.html">Ami Vestibulum suscipit <strong> × 4</strong></a></td>
-                                                <td>$165.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td><a href="single-product.html">Vestibulum suscipit <strong> × 2</strong></a></td>
-                                                <td>$165.00</td>
-                                            </tr>
+										    @foreach(\Cart::getContent() as $item)
+												<tr>
+													<td><a href="single-product.html">{{ $item->name }}<strong> × {{$item->quantity}}</strong></a></td>
+													<td>${{ \Cart::get($item->id)->getPriceSum() }}</td>
+												</tr>
+											@endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td>Sub Total</td>
-                                                <td><strong>$400</strong></td>
+                                                <td><strong>${{ \Cart::getTotal() }}</strong></td>
                                             </tr>
                                             <tr>
                                                 <td>Shipping</td>
                                                 <td class="d-flex justify-content-center">
                                                     <ul class="shipping-type">
-                                                        <li>
+                                                        <!--<li>
                                                             <div class="custom-control custom-radio">
                                                                 <input type="radio" id="flatrate" name="shipping" class="custom-control-input" checked />
                                                                 <label class="custom-control-label" for="flatrate">Flat Rate: $70.00</label>
                                                             </div>
-                                                        </li>
+                                                        </li>-->
                                                         <li>
                                                             <div class="custom-control custom-radio">
-                                                                <input type="radio" id="freeshipping" name="shipping" class="custom-control-input" />
+                                                                <input type="radio" id="freeshipping" checked name="shipping" class="custom-control-input" />
                                                                 <label class="custom-control-label" for="freeshipping">Free Shipping</label>
                                                             </div>
                                                         </li>
@@ -241,7 +222,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Total Amount</td>
-                                                <td><strong>$470</strong></td>
+                                                <td><strong>${{ \Cart::getTotal() }}</strong></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -251,7 +232,7 @@
                                     <div class="single-payment-method show">
                                         <div class="payment-method-name">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="cashon" name="paymentmethod" value="cash" class="custom-control-input" checked  />
+                                                <input type="radio" id="cashon" name="payment_method" value="Cash On Delivery" class="custom-control-input" checked  />
                                                 <label class="custom-control-label" for="cashon">Cash On Delivery</label>
                                             </div>
                                         </div>
@@ -284,7 +265,7 @@
                                     <div class="single-payment-method">
                                         <div class="payment-method-name">
                                             <div class="custom-control custom-radio">
-                                                <input type="radio" id="paypalpayment" name="paymentmethod" value="paypal" class="custom-control-input" />
+                                                <input type="radio" id="paypalpayment" name="payment_method" value="Online Payment" class="custom-control-input" />
                                                 <label class="custom-control-label" for="paypalpayment">Paypal <img src="assets/img/paypal-card.jpg" class="img-fluid paypal-card" alt="Paypal" /></label>
                                             </div>
                                         </div>
@@ -305,6 +286,8 @@
                         </div>
                     </div>
                 </div>
+				
+					</form>
             </div>
         </div>
     </main>

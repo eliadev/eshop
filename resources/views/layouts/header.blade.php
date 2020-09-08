@@ -14,6 +14,7 @@
       <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
    </head>
    <body>
+   <div id="loading"></div>
       <header>
          <div class="header-main sticky pt-sm-10 pb-sm-10 pt-md-10 pb-md-10">
             <div class="container">
@@ -47,9 +48,9 @@
 							<div class="header-mini-cart">
 								<div class="mini-cart-btn">
 									<i class="ion-bag"></i>
-									<span class="cart-notification">{{ \Cart::getTotalQuantity() }}</span>
+									<span class="cart-notification" id="total_items">{{ \Cart::getTotalQuantity() }}</span>
 								</div>
-								<ul class="cart-list">
+								<ul id="cartShow" class="cart-list">
 									@include('partials.cart-drop')
 								</ul>
 							</div>
@@ -280,11 +281,11 @@
 		}
 	</script>
 	<script>
-       $.ajaxSetup({
-          headers: {
-             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-       });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
 		$(document).ready(function () {
 			$('.addcart').on('click', function (e) {
@@ -295,33 +296,40 @@
 				/*btn.prop("disabled", true);*/
 				window.console.log(formData);
 
-           /* $.post("add", formData, function(response, status) {
-                  $("output").text(response);
-                  console.log("SUCCESS : ", response);
-                  btn.prop("disabled", false);
-            });*/
-
 				$.ajax({
 				 	type: "POST",
 				 	url: "{{url('add')}}",
 					data: formData,
-
-				 	/*success: function (data) {
-				 		$("#output").text(data);
-				 		console.log("SUCCESS : ", data);
-				 		btn.prop("disabled", false);
-				 	},*/
+					dataType: "json",
 					success:function(data){
-						$('#mycart').html(data);
-                  window.console.log(data);
-                  $('ul.cart-list').append('<li>' + data.name + '</li>');
-                  
-                  // event binding to remove items
-                  // $("li .fa.fa-times").click('')
-						// $(".cart-notification").text( parseInt($(".cart-notification").text()) + 1);
-						
-                  document.getElementById("pop").innerHTML = '<div class="alert-pop"><span class="quick-alert">PRODUCT HAVE BEEN ADDED TO YOUR CART</span> &nbsp; &nbsp;<a href="#" class="button primary">View Cart</a><a href="#" class="button primary">&nbsp;&nbsp;Go To Checkout</a></div>';
-					},
+                        var found = false;
+
+                        $('ul.cart-list li').each(function(idx, li) {
+                           console.log(li.id);
+                           if (li.id == data.id) {
+                                 found = true;
+                                 $('#'+li.id).find('div.qty').text(parseInt($('#'+li.id).find('div.qty').text()) + 1);
+                           }
+                        });
+
+                        if (!found) {
+                           $('ul.cart-list').append(
+                            '<li id="' + data.id + '"><div class="cart-img"><a href="#"><img src="{{asset('assets/img/cart/cart-2.jpg')}}" alt="' + data.name + '"></a></div>'+
+                            '<div class="cart-info"><h4><a href="#">' + data.name + '</a></h4><span>$' + data.price + '</span><small>Qty: <span class="qty">' + data.quantity + '</span></small></div>'+
+                            '<div class="del-icon">'+
+				            '<form action="/remove" method="POST">'+
+                            '<input type="hidden" name="_token" value="'+$('meta[name="csrf-token"]').attr('content')+'">'+
+					        '<input type="hidden" value="' + data.id + '" name="id">'+
+					        '<button><i class="fa fa-times"></i></button>'+
+				            '</form>'+
+                            '</div>'+
+                            '</li>');
+                        }
+
+                        $(".cart-empty").css('display', 'none');
+						document.getElementById("pop").innerHTML = '<div class="alert-pop"><span class="quick-alert">PRODUCT HAVE BEEN ADDED TO YOUR CART</span> &nbsp; &nbsp;<a href="#" class="button primary">View Cart</a><a href="#" class="button primary">&nbsp;&nbsp;Go To Checkout</a></div>';
+                        $(".cart-notification").text( parseInt($(".cart-notification").text()) + 1);
+                    },
 				 	error: function (e) {
 				 		$("#output").text(e.responseText);
 				 		console.log("ERROR : ", e);

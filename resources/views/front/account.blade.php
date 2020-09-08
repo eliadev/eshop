@@ -196,6 +196,14 @@
 												@endif
 												<div class="container">
 													<div class="row">
+													<div class="col-md-4">
+														<div class="a-box first-desktop-address-tile">
+															<div class="a-box-inner a-padding-extra-large">
+																<div id="ya-myab-plus-address-icon" class="a-section a-spacing-none address-plus-icon aok-inline-block"></div>
+																<h2 class="a-color-tertiary">Add Address</h2>
+															</div>
+														</div>
+													</div>
 													@foreach($addresses as $address)
 														<div class="col-md-4">
 															<address>

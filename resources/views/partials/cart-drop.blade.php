@@ -1,19 +1,19 @@
 @if(count(\Cart::getContent()) > 0)
     @foreach(\Cart::getContent() as $item)
-		<li>
+		<li id="{{ $item->id }}">
 			<div class="cart-img">
-				<a href="#"><img src="{{asset('assets/img/cart/cart-2.jpg')}}" alt="{{ $item->name }}"></a>
+				<a href="{{ route('front.product.show', [$item->id, $item->model->slug]) }}"><img src="{{ $item->model->getFirstMediaUrl('product') }}" alt="{{ $item->name }}"></a>
 			</div>
 			<div class="cart-info">
 				<h4><a href="#">{{ $item->name }}</a></h4>
 				<span>${{ \Cart::get($item->id)->getPriceSum() }}</span>
-				<small>Qty: {{$item->quantity}}</small>
+				<small>Qty: <div class="qty">{{$item->quantity}}</div></small>
 			</div>
 			<div class="del-icon">
 				<form action="{{ route('cart.remove') }}" method="POST">
 					{{ csrf_field() }}
-					<input type="hidden" value="{{ $item->id }}" id="id" name="id">
-					<button><i class="fa fa-times"></i></button>
+					<input type="hidden" value="{{ $item->id }}" name="id">
+					<button class="remove_item" data-id="{{ $item->id }}" type="submit"><i class="fa fa-times"></i></button>
 				</form>
 			</div>
 		</li>
@@ -28,5 +28,5 @@
 		<a href="{{ route('checkout.index') }}">checkout</a>
 	</li>
 @else
-    <li class="list-group-item">Your Cart is Empty</li>
+    <li class="list-group-item cart-empty">Your Cart is Empty</li>
 @endif

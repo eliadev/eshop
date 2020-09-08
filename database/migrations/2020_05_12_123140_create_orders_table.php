@@ -17,11 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
 			$table->string('order_number')->unique();
  
-            $table->enum('status', ['pending', 'processing', 'completed', 'decline'])->default('pending');
-            $table->decimal('grand_total', 20, 6);
+            $table->enum('order_status', ['pending', 'processing', 'preparing', 'delivery', 'delivered', 'cancelled'])->default('pending');
+            $table->decimal('grand_total', 8, 2);
             $table->unsignedInteger('item_count');
  
-            $table->boolean('payment_status')->default(1);
+			$table->enum('payment_status', ['pending', 'paid', 'failed'])->default('pending');
             $table->string('payment_method')->nullable();
 			
 			$table->unsignedBigInteger('user_id');

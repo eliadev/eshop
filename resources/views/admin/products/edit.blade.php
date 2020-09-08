@@ -146,6 +146,7 @@
 													<th><span class="btn btn-success addRow">+</span></th>
 												</tr>
 											</thead>
+										@if($productAttributes->count())
 											@foreach($productAttributes as $key => $productAttribute)
 												<tr>
 													<td>
@@ -177,6 +178,29 @@
 													<td><span class="btn btn-danger remove">X</span></td>
 												</tr>
 											@endforeach
+											@else
+												<tr>
+													<td>
+														<select class="form-control" name="addmore[0][attribute_id]">
+																<option disabled selected hidden>Select Attribute</option>
+															@foreach($attributes as $attribute)
+																<option value="{{$attribute->id}}">{{$attribute->name}}</option>
+															@endforeach
+														</select>
+													</td>
+													<td>
+														<select class="form-control" name="addmore[0][value]">
+																<option disabled selected hidden>Select Value</option>
+															@foreach($values as $value)
+																<option value="{{$value->id}}">{{$value->value}}</option>
+															@endforeach
+														</select>
+													</td>
+													<td><input type="text" name="addmore[0][quantity]" class="form-control"></td>
+													<td><input type="text" name="addmore[0][price]" class="form-control"></td>
+													<td><span class="btn btn-danger remove">X</span></td>
+												</tr>
+											@endif
 											</tbody>
 										</table>
 									</div>

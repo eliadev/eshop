@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $table = 'orders';
-    public $timestamps = false;
 
     protected $fillable = [
         'order_number', 
 		'user_id', 
+		'order_status',
 		'status', 
 		'grand_total', 
 		'item_count', 
@@ -27,5 +27,5 @@ class Order extends Model
     {
         return $this->hasMany('App\OrderItem');
     }
- 
+	
 }

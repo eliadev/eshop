@@ -14,6 +14,7 @@
 	  <link href="{{asset('cms/libs/bootstrap-table/bootstrap-table.min.css')}}" rel="stylesheet" type="text/css" />
 	  <link href="{{asset('cms/css/dropzone.min.css')}}" rel="stylesheet" type="text/css" />
 	  <link href="{{asset('cms/css/bootstrap-tagsinput.css')}}" rel="stylesheet" type="text/css" />
+      <link href="{{asset('cms/css/bootstrap-editable.css')}}" rel="stylesheet">
    </head>
    <body>
     <div class="preloader">
@@ -195,10 +196,10 @@
 							</a>
 							<ul class="nav-second-level" aria-expanded="false">
 								<li>
-									<a href="#">Sellers</a>
+									<a href="{!! route('customers.index') !!}">Customers</a>
 								</li>
 								<li>
-									<a href="#">Orders</a>
+									<a href="{!! route('orders.index') !!}">Orders</a>
 								</li>
 								<li>
 									<a href="#">Sales</a>
@@ -231,6 +232,26 @@
         <script src="{{asset('cms/js/pages/form-summernote.init.js')}}"></script>
 		<script src="{{asset('cms/js/dropzone.min.js')}}"></script>
 		<script src="{{asset('cms/js/bootstrap-tagsinput.min.js')}}"></script>
+		<script src="{{asset('cms/js/bootstrap-editable.min.js')}}"></script>
+		<script src="{{asset('cms/js/editable.js')}}"></script>
 		@yield('scripts')
+		<script>
+		$(document).ready(function () {
+	            $.ajaxSetup({
+	                headers: {
+	                    'X-CSRF-TOKEN': '{{csrf_token()}}'
+	                }
+	            });
+
+	            $('.xedit').editable({
+	                url: '{{url("contacts/update")}}',
+	                title: 'Update',
+	                success: function (response, newValue) {
+	                    console.log('Updated', response)
+	                }
+	            });
+
+	    });
+	</script>
    </body>
 </html>		

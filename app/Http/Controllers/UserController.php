@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+	
     public function show()
     {
 		if(!Auth::check())
@@ -19,7 +24,8 @@ class UserController extends Controller
         }
 		
 		$user = Auth::user();
-		$addresses = Address::all();
+		$addresses = $user->addresses()->get();
+		
     	return view('front.account', ['user' => $user, 'addresses' => $addresses ]);
     }
 	
