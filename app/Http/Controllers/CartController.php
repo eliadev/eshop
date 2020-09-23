@@ -14,7 +14,7 @@ class CartController extends Controller
         $cartCollection = Cart::getContent();
 		$discount = session()->get('coupon')['discount'] ?? 0;
 		$newSubTotal = (Cart::getSubTotal() - $discount);
-		$newTotal = $newSubTotal * 1;
+		$newTotal = $newSubTotal;
 
         return view('front.cart', [
 				'cartCollection' => $cartCollection,
@@ -64,7 +64,8 @@ class CartController extends Controller
 
 	public function clear()
 	{
+        session()->forget('coupon');
         Cart::clear();
-        return redirect()->route('cart.index')->with('success_msg', 'Car is cleared!');
+        return redirect()->route('cart.index')->with('success_msg', 'Cart is cleared!');
     }
 }
