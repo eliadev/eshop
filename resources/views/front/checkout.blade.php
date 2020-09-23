@@ -20,10 +20,33 @@
     <main>
         <div class="checkout-page-wrapper pt-100 pb-90 pt-sm-58 pb-sm-54">
             <div class="container">
-			
+				<div class="row">
+                    <div class="col-12">
+                        <div class="checkoutaccordion" id="checkOutAccordion">
+                            <div class="card">
+                                <h3>Have A Coupon? <span data-toggle="collapse" data-target="#couponaccordion">Click Here To Enter Your Code</span></h3>
+                                <div id="couponaccordion" class="collapse" data-parent="#checkOutAccordion">
+                                    <div class="card-body">
+                                        <div class="cart-update-option">
+                                            <div class="apply-coupon-wrapper">
+												@if (!session()->has('coupon'))
+													<form action="{{route('coupon.store')}}" method="post" class="d-block d-md-flex">
+														{{ csrf_field() }}
+														<input type="text" name="code" id="code" placeholder="Enter Your Coupon Code" required />
+														<button class="sqr-btn">Apply Coupon</button>
+													</form>
+												@endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 				<form action="{{ route('order.index') }}" method="POST">
 				 {{ csrf_field() }}
-				<input type="hidden" name="grand_total" value="{{ \Cart::getTotal() }}"/>
+				<input type="hidden" name="grand_total" value="{{ $newTotal }}"/>
 				<input type="hidden" name="item_count" value="{{ \Cart::getTotalQuantity() }}"/>
                 <div class="row">
                     <div class="col-lg-6">
@@ -93,12 +116,12 @@
 										<label for="postcode_2" class="required">Postcode / ZIP</label>
 										<input type="text" name="postcode" placeholder="Postcode / ZIP"  />
 									</div>
-									
+
 									<div class="single-input-item">
 										<label for="description">More Details</label>
 										<textarea name="description" id="description" cols="30" rows="3" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
 									</div>
-                                    
+
                                    <p>Select a shipping address from your address book or enter a new address.</p>
                                     <div class="checkout-box-wrap">
                                         <div class="single-input-item">
@@ -191,7 +214,7 @@
                                         <tbody>
 										    @foreach(\Cart::getContent() as $item)
 												<tr>
-													<td><a href="single-product.html">{{ $item->name }}<strong> × {{$item->quantity}}</strong></a></td>
+													<td><a href="{{ route('front.product.show', [$item->id, $item->model->slug]) }}">{{ $item->name }}<strong> × {{$item->quantity}}</strong></a></td>
 													<td>${{ \Cart::get($item->id)->getPriceSum() }}</td>
 												</tr>
 											@endforeach
@@ -201,6 +224,14 @@
                                                 <td>Sub Total</td>
                                                 <td><strong>${{ \Cart::getTotal() }}</strong></td>
                                             </tr>
+											@if (session()->has('coupon'))
+											<tr>
+												<td>Discount ({{ session()->get('coupon')['name'] }})
+													<a id='btnRemoveCoupon' ><b>Remove</b></a>
+												</td>
+												<td>${{ $discount }}</td>
+											</tr>
+											@endif
                                             <tr>
                                                 <td>Shipping</td>
                                                 <td class="d-flex justify-content-center">
@@ -222,7 +253,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Total Amount</td>
-                                                <td><strong>${{ \Cart::getTotal() }}</strong></td>
+                                                <td><strong>${{ $newTotal }}</strong></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -286,8 +317,7 @@
                         </div>
                     </div>
                 </div>
-				
-					</form>
+			</form>
             </div>
         </div>
     </main>

@@ -100,10 +100,13 @@
 						@if(count($cartCollection)>0)
                         <div class="cart-update-option d-block d-md-flex justify-content-between">
                             <div class="apply-coupon-wrapper">
-                                <form action="#" method="post" class=" d-block d-md-flex">
-                                    <input type="text" placeholder="Enter Your Coupon Code" required />
+							@if (!session()->has('coupon'))
+                                <form action="{{route('coupon.store')}}" method="post" class="d-block d-md-flex">
+									{{ csrf_field() }}
+                                    <input type="text" name="code" id="code" placeholder="Enter Your Coupon Code" required />
                                     <button class="sqr-btn">Apply Coupon</button>
                                 </form>
+							@endif
                             </div>
                             <div class="cart-update mt-sm-16">
 								<form action="{{ route('cart.clear') }}" method="POST">
@@ -123,9 +126,29 @@
                                 <h3>Cart Totals</h3>
                                 <div class="table-responsive">
                                     <table class="table">
+										<tr>
+                                            <td>Sub Total</td>
+                                            <td>${{ \Cart::getSubTotal() }}</td>
+                                        </tr>
+										@if (session()->has('coupon'))
+										<tr>
+											<td>Discount ({{ session()->get('coupon')['name'] }})
+												<form action="{{route('coupon.destroy')}}" method="POST" style="display:inline">
+													{{ csrf_field() }}
+													{{ method_field('delete') }}
+													<button type="submit"><b>Remove</b></button>
+												</form>
+											</td>
+											<td>${{ $discount }}</td>
+										</tr>
+										<tr>
+                                            <td>New Sub Total</td>
+                                            <td>${{ $newSubTotal }}</td>
+                                        </tr>
+										@endif
                                         <tr class="total">
                                             <td>Total</td>
-                                            <td class="total-amount">${{ \Cart::getTotal() }}</td>
+                                            <td class="total-amount">${{ $newTotal }}</td>
                                         </tr>
                                     </table>
                                 </div>

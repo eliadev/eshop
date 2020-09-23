@@ -327,6 +327,7 @@
 	$('.product-large-slider').slick({
 		slidesToShow: 1,
 		slidesToScroll: 1,
+		infinite: true,
 		fade: true,
 		arrows: true,
 		asNavFor: '.pro-nav',
@@ -337,6 +338,7 @@
 	// product details slider nav active
 	$('.pro-nav').slick({
 		slidesToShow: 4,
+		infinite: true,
 		slidesToScroll: 1,
 		asNavFor: '.product-large-slider',
 		centerMode: true,

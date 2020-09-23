@@ -22,23 +22,23 @@
                 <div class="member-area-from-wrap">
                     <div class="row">
 						<div class="col-lg-3"></div>
-                        <div class="col-lg-6"> 
+                        <div class="col-lg-6">
 							<div class="login-reg-form-wrap mt-md-100 mt-sm-58">
 								<h2>Sign up Form</h2>
 								@if($errors->all())
 									<div class="alert alert-danger">
 										<ul>
 										@foreach($errors->all() as $error)
-											<li>{{$error}}</li>         
+											<li>{{$error}}</li>
 										@endforeach
 										</ul>
 									</div>
-								@endif		
-								@if (session('status'))
+								@endif
+								@if (session('alert-danger'))
 									<div class="alert alert-danger">
-									  {{ session('status') }}
+									  {{ session('alert-danger') }}
 									</div>
-								@endif 
+								@endif
 								<div class="flash-message">
 									@foreach (['danger', 'warning', 'success', 'info'] as $msg)
 										@if(Session::has('alert-' . $msg))
@@ -65,7 +65,7 @@
 											</span>
 										@enderror
 									</div>
-									
+
 									<div class="single-input-item">
 										<input id="date_of_birth" type="date" class="@error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('date_of_birth') }}" placeholder="Date of Birth" required>
 										@error('date_of_birth')
@@ -74,7 +74,7 @@
 											</span>
 										@enderror
 									</div>
-									
+
 									<div class="single-input-item">
 										<input id="phone" type="text" class="@error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" placeholder="phone" required>
 										@error('phone')
@@ -103,7 +103,7 @@
 									<div class="single-input-item">
 										<input id="password-confirm" type="password" name="password_confirmation" placeholder="Confirm Password" required>
 									</div>
-									
+
 									<div class="single-input-item">
                                         <button type="submit" class="sqr-btn">{{ __('Register') }}</button>
 										<a href="{!! route('front.login') !!}" class="text-center">&nbsp;  I already have a membership</a>

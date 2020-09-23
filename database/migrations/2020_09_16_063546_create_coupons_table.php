@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAttributesTable extends Migration
+class CreateCouponsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateAttributesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('coupons', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-			$table->string('code')->unique();
-            $table->enum('frontend_type', ['Select', 'Radio', 'Both']);
+            $table->string('code')->unique();
+            $table->string('type');
+            $table->integer('value')->nullable();
+            $table->integer('percent_off')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateAttributesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attributes');
+        Schema::dropIfExists('coupons');
     }
 }

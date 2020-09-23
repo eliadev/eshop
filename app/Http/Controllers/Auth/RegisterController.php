@@ -71,6 +71,8 @@ class RegisterController extends Controller
      */
     protected function register(Request $request)
     {
+        $this->validator($request->all())->validate();
+
 		$user = new User();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -94,7 +96,7 @@ class RegisterController extends Controller
 	{
         $verification_code = $request->code;
         $user = User::where(['verification_code' => $verification_code])->first();
-        
+
         if($user){
             $user->is_verified = 1;
             $user->save();

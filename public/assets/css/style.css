@@ -60,6 +60,41 @@ button:focus {
 	z-index: 99999;
 }
 
+a#btnRemoveCoupon {
+    cursor: pointer;
+}
+
+ul.checkRadioContainer > li > label > input {
+	visibility: hidden;
+}
+
+ul.checkRadioContainer > li > label {
+	display: block;
+	margin-bottom: 0;
+	cursor: pointer;
+	width: 30px;
+	height: 30px;
+}
+
+ul.checkRadioContainer > li > label > span {
+	display: inline-block;
+	vertical-align: top;
+	line-height: 2em;
+}
+
+ul.checkRadioContainer > li > label > input + i {
+	visibility: hidden;
+	color: white;
+	margin-left: -5px;
+	margin-top: 7px;
+	position: absolute;
+	margin-right: 0;
+}
+
+ul.checkRadioContainer > li > label > input:checked + i {
+	visibility: visible;
+}
+
 .order-complete {
     display: -webkit-box;
     display: flex;

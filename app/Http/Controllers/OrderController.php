@@ -32,6 +32,10 @@ class OrderController extends Controller
 		$latestOrder = Order::orderBy('created_at','DESC')->firstOrNew();
 		$order_number = '#'.'CO'.date('Y').'-'.str_pad($latestOrder->id + 1, 8, "0", STR_PAD_LEFT);
 		$paymentStatus = 'pending';
+		
+		$discount = session()->get('coupon')['discount'] ?? 0;
+		$newSubTotal = (Cart::getSubTotal() - $discount);
+		$newTotal = $newSubTotal * 1;
 
         // Insert into orders table
         $order = Order::create([

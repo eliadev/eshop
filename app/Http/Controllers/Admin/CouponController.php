@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Mail;
-use App\User;
-use App\Order;
-use App\OrderItem;
-use App\Product;
+use App\Coupon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Mail\OrderStatus;
 
-class OrderController extends Controller
+class CouponController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::with(['items'])->whereHas('items')->get();
-		return view('admin.orders.index', ['orders' => $orders]);
+        //
     }
 
     /**
@@ -42,60 +36,51 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+		//
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Order $order
+     * @param  \App\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Coupon $coupon)
     {
-		return view('admin.orders.show', ['order' => $order]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Order $order
+     * @param  \App\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function edit(Order $order)
+    public function edit(Coupon $coupon)
     {
-        return view('admin.orders.edit', compact('order'));
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Order $order
+     * @param  \App\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Coupon $coupon)
     {
-        $order->update($request->all());
-
-		if($request->order_status == 'processing'){
-			Mail::send(new OrderStatus($order));
-        }
-
-		session()->flash('message', 'Your record has been updated successfully');
-		return redirect()->back();
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Order $order
+     * @param  \App\Coupon  $coupon
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Coupon $coupon)
     {
-        $order->delete();
-		session()->flash('message', 'Your record has been deleted successfully');
-		return redirect(route('orders.index'));
+        //
     }
 }

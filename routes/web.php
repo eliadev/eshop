@@ -44,6 +44,10 @@ Route::post('/update', 'CartController@update')->name('cart.update');
 Route::post('/remove', 'CartController@remove')->name('cart.remove');
 Route::post('/clear', 'CartController@clear')->name('cart.clear');
 
+//Coupon
+Route::post('/coupon', 'CouponController@store')->name('coupon.store');
+Route::delete('/remove-coupon', 'CouponController@destroy')->name('coupon.destroy');
+
 //Checkout & Order
 Route::middleware(['auth', 'is_verified'])->group(function () {
 	Route::get('/checkout', 'CheckoutController@index')->name('checkout.index');
@@ -64,8 +68,9 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'is_admin'])->gr
 	Route::resource('categories', 'CategoryController');
 	Route::resource('products', 'ProductController');
 	Route::resource('orders', 'OrderController');
+	Route::resource('coupons', 'CouponController');
 	Route::post('products/media', 'ProductController@storeMedia')->name('products.storeMedia');
-	
+
 	Route::get('customers', 'CustomerController@index')->name('customers.index');
 	Route::get('customers-show/{id}', 'CustomerController@show')->name('customers.show');
 	Route::post('customers/{id}/delete', 'CustomerController@destroy')->name('customers.destroy');

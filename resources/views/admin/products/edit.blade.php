@@ -15,7 +15,7 @@
 							<h4 class="page-title">Add / Edit Products</h4>
 						</div>
 					</div>
-				</div>     
+				</div>
 				<div class="row">
 					<div class="col-12">
 					@if(session()->has('message'))
@@ -27,7 +27,7 @@
 						<div class="alert alert-danger">
 							<ul>
 							@foreach($errors->all() as $error)
-								<li>{{$error}}</li>			
+								<li>{{$error}}</li>
 							@endforeach
 							</ul>
 						</div>
@@ -48,15 +48,15 @@
 												{{$category->name}}
 											</option>
 										   @endforeach
-										</select>												
+										</select>
 									</div>
-										
+
 									<div class="form-group mb-3">
 										<label for="brand_id">Brands</label>
 										<select class="form-control" name="brand_id">
 											<option disabled selected hidden>-- Select Brand --</option>
 											@foreach($brands as $brand)
-												<option value="{{$brand->id}}"	
+												<option value="{{$brand->id}}"
 												@if($brand->id == $product->brand_id)
 												selected
 												@endif
@@ -64,22 +64,22 @@
 											@endforeach
 										</select>
 									</div>
-									
+
 									<div class="form-group mb-3">
 										<label for="name">Product Name</label>
 										<input type="text" id="name" name="name" value="{{$product->name}}" class="form-control" placeholder="Product Name">
 									</div>
-									
+
 									<div class="form-group mb-3">
 										<label for="name">Price</label>
 										<input type="text" id="price" name="price" value="{{$product->price}}" class="form-control" placeholder="Price">
 									</div>
-									
+
 									<div class="form-group mb-3">
 										<label for="name">Reference</label>
 										<input type="number" id="reference" name="reference" value="{{$product->reference}}" class="form-control" placeholder="Reference">
 									</div>
-									
+
 									<div class="form-group mb-3">
 										<label for="description">Description</label>
 										<textarea class="form-control" name="description" id="summernote-editor" rows="5" placeholder="Please enter description">{!! $product->description !!}</textarea>
@@ -102,15 +102,15 @@
 											<input class="tgl tgl-light" id="featured" name="featured" type="checkbox" value="1" {{ ($product->featured=="1")? "checked" : "" }}>
 											<label class="tgl-btn" for="featured"></label>
 										</div>
-									
+
 										<div class="form-group mb-3 col-md-6">
 											<label for="published">Published</label>
 											<input class="tgl tgl-light" id="published" name="published" type="checkbox" value="1" {{ ($product->published=="1")? "checked" : "" }}>
 											<label class="tgl-btn" for="published"></label>
 										</div>
 									</div>
-									
-								</div> 
+
+								</div>
 								<div class="card-box">
 									<h5 class="text-uppercase mt-0 mb-3 bg-light p-2">Image & Photo Gallery</h5>
 									<div class="form-group mb-3">
@@ -129,8 +129,8 @@
 										<div class="needsclick dropzone" id="gallery-dropzone"></div>
 									</div>
 								</div>
-							</div> 
-						</div>	
+							</div>
+						</div>
 						<div class="row">
 							<div class="col-12">
 								<div class="card-box">
@@ -153,7 +153,7 @@
 														<select class="form-control" name="addmore[{{ $key }}][attribute_id]">
 															<option disabled selected hidden>Select Attribute</option>
 															@foreach($attributes as $attribute)
-															<option value="{{$attribute->id}}"	
+															<option value="{{$attribute->id}}"
 																@if($attribute->id == $productAttribute->attribute_id)
 																selected
 																@endif
@@ -162,11 +162,11 @@
 														</select>
 													</td>
 													<td>
-														<select class="form-control" name="addmore[{{ $key }}][value]">
+														<select class="form-control" name="addmore[{{ $key }}][value_id]">
 															<option disabled selected hidden>Select Value</option>
 															@foreach($values as $value)
-															<option value="{{$value->id}}"	
-																@if($value->id == $productAttribute->value)
+															<option value="{{$value->id}}"
+																@if($value->id == $productAttribute->value_id)
 																selected
 																@endif
 																>{{ $value->value }}</option>
@@ -189,7 +189,7 @@
 														</select>
 													</td>
 													<td>
-														<select class="form-control" name="addmore[0][value]">
+														<select class="form-control" name="addmore[0][value_id]">
 																<option disabled selected hidden>Select Value</option>
 															@foreach($values as $value)
 																<option value="{{$value->id}}">{{$value->value}}</option>
@@ -214,9 +214,9 @@
 									<a href="{{route('products.index')}}" class="btn w-sm btn-light waves-effect">Cancel</a>
 								</div>
 							</div>
-						</div>	 
+						</div>
 					</div>
-					</form>	
+					</form>
 				</div>
 			</div>
 		</div>
@@ -237,17 +237,17 @@
 				});
 
 				function addRow() {
-					
+
 					++i;
 					var tr = '<tr>' +
 							'<td><select class="form-control" name="addmore['+i+'][attribute_id]"><option disabled selected hidden>Select Attribute</option>@foreach($attributes as $attribute)<option value="{{$attribute->id}}">{{$attribute->name}}</option>@endforeach</select>' +
-							'<td><select class="form-control" name="addmore['+i+'][value]"><option disabled selected hidden>Select Value</option>@foreach($values as $value)<option value="{{$value->id}}">{{$value->value}}</option>@endforeach</select>' +
+							'<td><select class="form-control" name="addmore['+i+'][value_id]"><option disabled selected hidden>Select Value</option>@foreach($values as $value)<option value="{{$value->id}}">{{$value->value}}</option>@endforeach</select>' +
 							'<td><input type="text" name="addmore['+i+'][quantity]" class="form-control"></td>' +
 							'<td><input type="text" name="addmore['+i+'][price]" class="form-control"></td>'+
 							'<td><span class="btn btn-danger remove">X</span></td>' +
 							'</tr>';
 					$('tbody').append(tr);
-				}; 
+				};
 			 });
 
 			$(document).on('click', '.remove', function() {

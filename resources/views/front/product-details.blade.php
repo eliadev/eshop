@@ -26,18 +26,18 @@
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="product-large-slider mb-20 slider-arrow-style slider-arrow-style__style-2">
-									@foreach($product->getMedia('gallery') as $media )
 										<div class="pro-large-img img-zoom" id="img1">
                                             <img src="{{ $product->getFirstMediaUrl('product') }}" alt="" />
                                         </div>
+									@foreach($product->getMedia('gallery') as $media )
                                         <div class="pro-large-img img-zoom" id="img1">
                                             <img src="{!! url($media->getUrl()) !!}" alt="" />
                                         </div>
 									@endforeach
                                     </div>
                                     <div class="pro-nav slick-padding2 slider-arrow-style slider-arrow-style__style-2">
+										<div class="pro-nav-thumb"><img src="{{ $product->getFirstMediaUrl('product') }}" alt="" /></div>
 									@foreach($product->getMedia('gallery') as $media )
-                                        <div class="pro-nav-thumb"><img src="{{ $product->getFirstMediaUrl('product') }}" alt="" /></div>
                                         <div class="pro-nav-thumb"><img src="{!! url($media->getUrl()) !!}" alt="" /></div>
 									@endforeach
                                     </div>
@@ -45,7 +45,7 @@
                                 <div class="col-lg-7">
                                     <div class="product-details-des pt-md-98 pt-sm-58">
                                         <h3>{{ $product->name }}</h3>
-                                        
+
                                         <div class="pricebox">
                                             <span class="regular-price">${{ $product->price }}</span>
                                         </div>
@@ -58,6 +58,47 @@
                                                 <a href="#"><i class="ion-bag"></i>Add to cart</a>
                                             </div>
                                         </div>
+									@foreach($product->productAttributes as $productAttribute)
+										@if($productAttribute->attribute->frontend_type == 'Radio')
+										<div class="color-option mb-24">
+                                            <h5>color :</h5>
+                                            <ul class="checkRadioContainer">
+                                                <li>
+													<label class="c-blue">
+														<input type="radio" name="color" id="blue" value="blue" />
+														<i class="fa fa-check fa-1x"></i>
+													</label>
+                                                </li>
+												<li>
+													<label class="c-red">
+														<input type="radio" name="color" id="red" value="red" />
+														<i class="fa fa-check fa-1x"></i>
+													</label>
+                                                </li>
+												<li>
+													<label class="c-brown">
+														<input type="radio" name="color" id="brown" value="brown" />
+														<i class="fa fa-check fa-1x"></i>
+													</label>
+                                                </li>
+												<li>
+													<label class="c-gray">
+														<input type="radio" name="color" id="gray" value="gray" />
+														<i class="fa fa-check fa-1x"></i>
+													</label>
+                                                </li>
+                                            </ul>
+                                        </div>
+										@endif
+										@if($productAttribute->attribute->frontend_type == 'Select')
+                                            <div class="pro-size mb-24">
+                                                <h5>size :</h5>
+                                                <select class="nice-select" style="display: none;">
+													<option value="{{ $productAttribute->value->value }}">{{ $productAttribute->value->value }}</option>
+                                                </select>
+                                            </div>
+										@endif
+									@endforeach
                                         <div class="availability mb-20">
                                             <h5>Availability:</h5>
                                             <span>in stock</span>
@@ -82,7 +123,7 @@
                                             <li>
                                                 <a data-toggle="tab" href="#tab_two">Information</a>
                                             </li>
-                                            
+
                                         </ul>
                                         <div class="tab-content reviews-tab">
                                             <div class="tab-pane fade show active" id="tab_one">
@@ -102,9 +143,9 @@
                                                         </tr>
 														@foreach($product->productAttributes as $key => $productAttribute)
                                                         <tr>
-                                                            <td>{{ $key }}</td>
+                                                            <td>{{ $key +1 }}</td>
                                                             <td>{{ $productAttribute->attribute->name }}</td>
-                                                            <td>{{ $productAttribute->value }}</td>
+                                                            <td>{{ $productAttribute->value->value }}</td>
                                                             <td>{{ $productAttribute->quantity }}</td>
                                                             <td>{{ $productAttribute->price }}</td>
                                                         </tr>
@@ -177,7 +218,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> 
+                        </div>
                         <div class="page-section pt-100 pt-sm-58">
                             <div class="section-title text-center pb-44">
                                 <p>The latest products</p>
@@ -231,28 +272,28 @@
                                 </div>
                                 <div class="sidebar-body">
                                     <ul class="price-container">
-                                        <li class="active"> 
+                                        <li class="active">
                                             <label class="checkbox-container">
                                                 Cat 1 (10)
                                                 <input type="checkbox" name="checkbox">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li> 
+                                        <li>
                                             <label class="checkbox-container">
                                                 Cat 2 (16)
                                                 <input type="checkbox" name="checkbox">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li> 
+                                        <li>
                                             <label class="checkbox-container">
                                                 Cat 3 (10)
                                                 <input type="checkbox" name="checkbox">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li> 
+                                        <li>
                                             <label class="checkbox-container">
                                                 Cat 4 (9)
                                                 <input type="checkbox" name="checkbox">
@@ -268,35 +309,35 @@
                                 </div>
                                 <div class="sidebar-body">
                                     <ul class="price-container">
-                                        <li class="active"> 
+                                        <li class="active">
                                             <label class="radio-container">
                                                 $20.00 - $21.00
                                                 <input type="radio" name="radio">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li> 
+                                        <li>
                                             <label class="radio-container">
                                                 $26.00 - $30.00
                                                 <input type="radio" name="radio">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li> 
+                                        <li>
                                             <label class="radio-container">
                                                 $48.00 - $50.00
                                                 <input type="radio" name="radio">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li> 
+                                        <li>
                                             <label class="radio-container">
                                                     $100.00 - $200.00
                                                 <input type="radio" name="radio">
                                                 <span class="checkmark"></span>
                                             </label>
                                         </li>
-                                        <li> 
+                                        <li>
                                             <label class="radio-container">
                                                     $200.00 - $500.00
                                                 <input type="radio" name="radio">

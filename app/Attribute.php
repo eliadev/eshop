@@ -8,10 +8,15 @@ class Attribute extends Model
 {
     protected $table = "attributes";
 	protected $fillable = ['code', 'name', 'frontend_type'];
-	
-	
+
+
     public function values()
     {
         return $this->hasMany('App\AttributeValue');
 	}
+
+	public function productAttributes()
+    {
+        return $this->hasMany('App\ProductAttribute');
+    }
 }

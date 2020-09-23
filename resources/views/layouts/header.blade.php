@@ -339,5 +339,24 @@
 			});
 		});
 	</script>
+    <script>
+    $(document).ready(function () {
+        $('#btnRemoveCoupon').on('click', function() {
+            $.ajax({
+                url: '{{url('remove-coupon')}}',
+                type: 'DELETE',
+                data: '',
+                contentType:'application/json',
+                dataType: 'text',
+                success: function(result) {
+                    location.reload();
+                },
+                error: function(result){
+                    alert('wefwe');
+                }
+            });
+        });
+    });
+    </script>
    </body>
 </html>

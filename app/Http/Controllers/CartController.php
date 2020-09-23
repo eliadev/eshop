@@ -12,7 +12,16 @@ class CartController extends Controller
     public function index()
 	{
         $cartCollection = Cart::getContent();
-        return view('front.cart', ['cartCollection' => $cartCollection]);
+		$discount = session()->get('coupon')['discount'] ?? 0;
+		$newSubTotal = (Cart::getSubTotal() - $discount);
+		$newTotal = $newSubTotal * 1;
+
+        return view('front.cart', [
+				'cartCollection' => $cartCollection,
+				'discount' => $discount,
+				'newSubTotal' => $newSubTotal,
+				'newTotal' => $newTotal
+		]);
     }
 
 	public function add(Request $request)
@@ -23,7 +32,7 @@ class CartController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'image' => $request->image,
-            'slug' => $request->slug
+            'slug' => $request->slug,
         ];
 
         Cart::add($arr)->associate('App\Product');
@@ -31,7 +40,6 @@ class CartController extends Controller
 		if ($request->ajax()) {
             return response()->json($arr);
 		}
-
         //return redirect()->route('cart.index')->with('success_msg', 'Item is Added to Cart!');
     }
 
